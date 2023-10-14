@@ -1,0 +1,62 @@
+@mixin button-color($color) {
+   background-color: $color;
+}
+
+@mixin font-primary() {
+   font-family: 'League Spartan', sans-serif;
+   font-style: normal;
+   font-display: swap;
+   font-weight: 400;
+   font-size: 14px;
+   line-height: 1.7;
+   letter-spacing: 0.15px;
+   word-spacing: 1.05px;
+}
+
+@mixin btn-primary($bg-color, $hover-color, $text-color) {
+   background-color: $bg-color;
+   padding-top: 1.379rem;
+   padding-bottom: 1.3rem;
+   padding-inline: 1.7rem;
+   border-radius: .6rem;
+   width: auto;
+   height: 4.0rem;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+
+   &:hover {
+       cursor: pointer;
+       background-color: $hover-color;
+   }
+
+   a {
+      @include font-primary();
+      text-decoration: none;
+      color: $text-color; 
+   }
+}
+
+@mixin btn-secondary($bg-color, $hover-color, $text-color) {
+   background-color: $bg-color;
+   padding-top: 1.77rem;
+   padding-bottom: 1.7rem;
+   padding-inline: 2.4rem;
+   border-radius: 2.4rem;
+   width: auto;
+   height: 4.8rem;
+   display: flex;
+   align-items: center;
+
+   &:hover {
+       cursor: pointer;
+       background-color: $hover-color;
+   }
+
+   a {
+      @include font-primary();
+      text-decoration: none;
+      color: $text-color; 
+   }
+}
+

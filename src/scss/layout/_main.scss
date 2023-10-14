@@ -1,0 +1,13 @@
+@use 'base/variables' as var;
+@use 'base/mixins' as mxs;
+
+div#main-start {
+    width: 100%;
+    padding-top: 80px;
+}
+
+main.content-center {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}

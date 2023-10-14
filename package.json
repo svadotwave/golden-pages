@@ -1,0 +1,22 @@
+{
+  "name": "eds-www",
+  "version": "1.0.0",
+  "description": "project golden pages",
+  "main": "index.php",
+  "scripts": {
+    "sass": "sass --watch src/scss:build/css",
+    "css": "gulp dev"
+  },
+  "keywords": [
+    "SASS",
+    "Gulp"
+  ],
+  "author": "Sergio Eloy Vaca Aguilera",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-plumber": "^1.2.1",
+    "gulp-sass": "^5.1.0",
+    "sass": "^1.69.2"
+  }
+}

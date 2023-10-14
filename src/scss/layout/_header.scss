@@ -1,0 +1,36 @@
+@use 'base/variables' as var;
+@use 'base/mixins' as mxs;
+
+header#menu_top {
+    height: 80px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 9999;
+  
+    background-color: var.$color-3-hover;
+    border-bottom: 1px solid #d4d9e1;
+    box-sizing: border-box;
+  }
+
+  .content_menu_top {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    a {
+      text-decoration: none;
+    }
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+
+    i {
+        margin-right: 10px;
+    }
+  }
+
+
