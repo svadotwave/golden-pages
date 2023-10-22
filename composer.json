@@ -1,0 +1,19 @@
+{
+    "name": "x3sva/golden-pages",
+    "description": "Proyecto golden Pages",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "MVC\\" : "./",
+            "Controllers\\" : "./cotrollers",
+            "Models\\" : "./models"
+        }
+    },
+    "authors": [
+        {
+            "name": "Ch3CoX",
+            "email": "checox.ss7@gmail.com"
+        }
+    ],
+    "require": {}
+}
