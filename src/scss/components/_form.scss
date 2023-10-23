@@ -31,10 +31,21 @@
     margin-bottom: 1.8rem;
 }
 
+.m-t-18 {
+    margin-top: 1.8rem;
+}
+
 .m-b-25 {
     margin-bottom: 2.5rem;
 }
 
 .p-t-5 {
     margin-top: 0.5rem;
+}
+
+.acciones {
+    display: flex;
+    flex-direction: column;
+    height: 50px;
+    justify-content: space-between;
 }

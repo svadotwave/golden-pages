@@ -3,6 +3,7 @@
 namespace Controllers;
 
 use MVC\Router;
+use Models\Usuario;
 
 class LoginController {
 
@@ -15,8 +16,9 @@ class LoginController {
         echo "--> Logout";
     }
 
-    public static function olvideContraseña() {
-        echo "--> olvideContraseña";
+    public static function olvideContraseña(Router $router) {
+        
+        $router->render('auth/olvide-contraseña');
     }
 
     public static function recuperarContraseña() {
@@ -25,6 +27,22 @@ class LoginController {
 
     public static function creaCuenta(Router $router) {
 
-        $router->render('auth/registro');
+        $usuario = new Usuario($_POST);
+        $alertas = [];
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // error_log('------------------------');
+            // error_log('Enviaste el formulario');
+            // error_log('------------------------');
+
+            $usuario->sincronizar($_POST);
+            $alertas = $usuario->validarNuevaCuenta();
+
+        }
+
+        $router->render('auth/registrarse', [
+            'usuario' => $usuario,
+            'alertas' => $alertas
+        ]);
     }
 }
