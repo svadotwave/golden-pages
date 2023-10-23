@@ -2,7 +2,7 @@
   "name": "eds-www",
   "version": "1.0.0",
   "description": "project golden pages",
-  "main": "index.php",
+  "main": "index.js",
   "scripts": {
     "gulp": "gulp"
   },

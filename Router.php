@@ -7,19 +7,16 @@ class Router
     public array $getRoutes = [];
     public array $postRoutes = [];
 
-    public function get($url, $fn)
-    {
-        $this -> getRoutes[$url] = $fn;
+    public function get($url, $fn) {
+        $this->getRoutes[$url] = $fn;
     }
 
-    public function post($url, $fn)
-    {
+    public function post($url, $fn) {
         $this->postRoutes[$url] = $fn;
     }
 
-    public function comprobarRutas()
-    {
-        
+    public function comprobarRutas() {
+
         // Proteger Rutas...
         session_start();
 
@@ -38,7 +35,7 @@ class Router
         }
 
 
-        if ( $fn ) {
+        if ($fn) {
             // Call user fn va a llamar una función cuando no sabemos cual sera
             call_user_func($fn, $this); // This es para pasar argumentos
         } else {
@@ -59,6 +56,6 @@ class Router
         // entonces incluimos la vista en el layout
         include_once __DIR__ . "/views/$view.php";
         $contenido = ob_get_clean(); // Limpia el Buffer
-        include_once __DIR__ . '/views/layout.php';
+        include_once __DIR__ . '/views/layout/header.php';
     }
 }
