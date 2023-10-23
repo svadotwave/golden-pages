@@ -19,22 +19,22 @@
 
     <header id="menu_top">
         <div class="content_menu_top content-pages">
-            <a class="logo" href="/index.php">
+            <a class="logo" href="/">
                 <i class="fa-solid fa-book-open" style="color: #ffffff; font-size: 48px"></i>
                 <span class="title-main">GOLDEN PAGES</span>
             </a>
             
             <?php 
             $current_url = $_SERVER['REQUEST_URI'];
-            if(strpos($current_url, 'index.php')) {
+            if($current_url === '/') {
             ?>
             
             <div class="buttons">
                 <div class="btn-2">
-                    <a href="/views/login.php">Iniciar Sesión</a>
+                    <a href="login">Iniciar Sesión</a>
                 </div>
                 <div class="btn-1">
-                    <a href="/views/sign_up.php">Registrarse</a>
+                    <a href="/registrarse">Registrarse</a>
                 </div>
             </div>
 

@@ -23,7 +23,8 @@ class LoginController {
         echo "--> recuperarContraseña";
     }
 
-    public static function creaCuenta() {
-        echo "--> creaCuenta";
+    public static function creaCuenta(Router $router) {
+
+        $router->render('auth/registro');
     }
 }
