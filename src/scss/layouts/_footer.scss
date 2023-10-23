@@ -1,0 +1,15 @@
+footer.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    text-align: center;
+    padding-inline: 25px;
+    padding-top: 25px;
+    z-index: 999;
+}
+
+a.none {
+    text-decoration: none;
+}
