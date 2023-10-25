@@ -81,13 +81,13 @@ class RegistroController{
 
         if(empty($usuario)) {
             // Mostrar mensaje de error
-            Usuario::setAlerta('error', 'token', 'Token No Válido');  
+            Usuario::setAlerta('token', 'error', 'Token No Válido');  
         } else {
             // Mostrar mensaje de confirmado
             $usuario->email_confirmado = "1";
             $usuario->token = "";
             $usuario->guardar($usuario->id_usuario);
-            Usuario::setAlerta('exito', 'token', 'Cuenta Comprobada Correctamente!');
+            Usuario::setAlerta('token', 'exito', 'Cuenta Comprobada Correctamente!');
         }
         
         $alertas = Usuario::getAlertas();
