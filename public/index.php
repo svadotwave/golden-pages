@@ -4,6 +4,7 @@ require_once __DIR__ . '/../includes/app.php';
 
 use MVC\Router;
 use Controllers\LoginController;
+use Controllers\RegistroController;
 use Controllers\Indexcontroller;
 
 $router = new Router();
@@ -23,8 +24,12 @@ $router->get('/recuperar-contraseña', [LoginController::class, 'recuperarContra
 $router->post('/recuperar-contraseña', [LoginController::class, 'recuperarContraseña']);
 
 // Crear Cuenta
-$router->get('/registrarse', [LoginController::class, 'creaCuenta']);
-$router->post('/registrarse', [LoginController::class, 'creaCuenta']);
+$router->get('/registrarse', [RegistroController::class, 'creaCuenta']);
+$router->post('/registrarse', [RegistroController::class, 'creaCuenta']);
+
+// Confirmar cuenta por email
+$router->get('/confirmar-cuenta', [RegistroController::class, 'confirmar']);
+$router->get('/mensaje', [RegistroController::class, 'mensaje']);
 
 
 // Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador

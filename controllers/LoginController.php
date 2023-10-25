@@ -3,6 +3,7 @@
 namespace Controllers;
 
 use MVC\Router;
+use Models\Usuario;
 
 class LoginController {
 
@@ -15,16 +16,13 @@ class LoginController {
         echo "--> Logout";
     }
 
-    public static function olvideContraseña() {
-        echo "--> olvideContraseña";
+    public static function olvideContraseña(Router $router) {
+        
+        $router->render('auth/olvide-contraseña');
     }
 
     public static function recuperarContraseña() {
         echo "--> recuperarContraseña";
     }
 
-    public static function creaCuenta(Router $router) {
-
-        $router->render('auth/registro');
-    }
 }

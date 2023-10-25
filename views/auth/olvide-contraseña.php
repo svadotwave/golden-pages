@@ -7,25 +7,18 @@
         action="/login">
         <fieldset>
             <legend>
-                <h1>Iniciar sesión</h1>
+                <h1>Olvide mi contraseña</h1>
             </legend>
 
-            <label class="block m-b-18 h3-2" for="">
+            <label class="h3-2">Reestablece tu contraseña escribiendo tu correo a continiación</label>
+
+            <label class="block m-b-18 m-t-18 h3-2" for="">
                 CORREO*
                 <input 
                     class="block p-t-5 input-text" 
                     type="email"
                     name="email"
                     placeholder="tu@dominio.com">
-            </label>
-        
-            <label class="block m-b-18 h3-2" for="">
-                CONTRASEÑA*
-                <input 
-                    class="block p-t-5 input-text" 
-                    type="password"
-                    name="password"
-                    placeholder="********">
             </label>
 
             <!-- button -->
@@ -37,8 +30,8 @@
             >
 
             <div class="center acciones">
-                <span class="body-1">
-                    <a href="/olvide-contraseña">¿Olvidaste tu contraseña?</a>
+                <span class="body-1">¿Ya tienes una cuenta? 
+                    <a href="/login">Inicia sesión</a>
                 </span>
                 <span class="body-1">¿No tienes una cuenta? 
                     <a href="/registrarse">Registrate</a>
