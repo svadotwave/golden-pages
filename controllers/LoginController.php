@@ -25,24 +25,4 @@ class LoginController {
         echo "--> recuperarContraseña";
     }
 
-    public static function creaCuenta(Router $router) {
-
-        $usuario = new Usuario($_POST);
-        $alertas = [];
-
-        if($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // error_log('------------------------');
-            // error_log('Enviaste el formulario');
-            // error_log('------------------------');
-
-            $usuario->sincronizar($_POST);
-            $alertas = $usuario->validarNuevaCuenta();
-
-        }
-
-        $router->render('auth/registrarse', [
-            'usuario' => $usuario,
-            'alertas' => $alertas
-        ]);
-    }
 }

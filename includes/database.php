@@ -1,11 +1,11 @@
 <?php
 
-// $db = mysqli_connect('localhost', 'root', '', '');
+$db = mysqli_connect('localhost', 'root', 'gobd1255', 'db_golden_pages');
 
 
-// if (!$db) {
-//     echo "Error: No se pudo conectar a MySQL.";
-//     echo "errno de depuración: " . mysqli_connect_errno();
-//     echo "error de depuración: " . mysqli_connect_error();
-//     exit;
-// }
+if (!$db) {
+    echo "Error: No se pudo conectar a MySQL.";
+    echo "errno de depuración: " . mysqli_connect_errno();
+    echo "error de depuración: " . mysqli_connect_error();
+    exit;
+}

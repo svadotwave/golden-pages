@@ -31,7 +31,7 @@
             
             <div class="buttons">
                 <div class="btn-2">
-                    <a href="login">Iniciar Sesión</a>
+                    <a href="/login">Iniciar Sesión</a>
                 </div>
                 <div class="btn-1">
                     <a href="/registrarse">Registrarse</a>

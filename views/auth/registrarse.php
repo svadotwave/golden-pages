@@ -22,7 +22,7 @@
 
             <?php if(!empty($alertas)) {
                     if(array_key_exists('nombre', $alertas["error"])) { ?>
-                        <label class="body-2 error" for="">
+                        <label class="body-2 error block" for="">
                         <i class="fa-solid fa-circle-exclamation" style="color: #EC5757; font-size: 12px"></i>
                         <?php echo $alertas["error"]['nombre']; ?>
                         </label>
@@ -42,7 +42,7 @@
 
             <?php if(!empty($alertas)) {
                     if(array_key_exists('apellido', $alertas["error"])) { ?>
-                        <label class="body-2 error" for="">
+                        <label class="body-2 error block" for="">
                         <i class="fa-solid fa-circle-exclamation" style="color: #EC5757; font-size: 12px"></i>
                         <?php echo $alertas["error"]['apellido']; ?>
                         </label>
@@ -61,7 +61,7 @@
 
             <?php if(!empty($alertas)) {
                     if(array_key_exists('email', $alertas["error"])) { ?>
-                        <label class="body-2 error" for="">
+                        <label class="body-2 error block" for="">
                         <i class="fa-solid fa-circle-exclamation" style="color: #EC5757; font-size: 12px"></i>
                         <?php echo $alertas["error"]['email']; ?>
                         </label>
@@ -79,7 +79,7 @@
 
             <?php if(!empty($alertas)) {
                     if(array_key_exists('password', $alertas["error"])) { ?>
-                        <label class="body-2 error" for="">
+                        <label class="body-2 error block" for="">
                         <i class="fa-solid fa-circle-exclamation" style="color: #EC5757; font-size: 12px"></i>
                         <?php echo $alertas["error"]['password']; ?>
                         </label>
