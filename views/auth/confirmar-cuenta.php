@@ -1,9 +1,9 @@
 <main class="centrado">
 
     <?php
-    if(isset($alertas['exito']) && $alertas['error'] === 'token') { ?>
+    if(array_key_exists('exito', $alertas["token"])) { ?>
         <i class="fa-solid fa-circle-check fa-beat m-b-8" style="color: #33D69F; font-size: 80px"></i>
-        <h2><?php echo $alertas["exito"]['token']; ?></h2>
+        <h2><?php echo $alertas["token"]['exito']; ?></h2>
         <div class="buttons m-t-80">
             <div class="btn-1">
                 <a href="/login">Iniciar Sesión</a>
@@ -12,7 +12,7 @@
     <?php 
     } else { ?>
         <i class="fa-solid fa-circle-xmark fa-beat m-b-8" style="color: #EC5757; font-size: 80px"></i>
-        <h2><?php echo $alertas["error"]['token']; ?></h2>
+        <h2><?php echo $alertas["token"]['error']; ?></h2>
         <div class="buttons m-t-80">
             <div class="btn-1">
                 <a href="/registrarse">Registrarse</a>
