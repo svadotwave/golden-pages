@@ -91,6 +91,7 @@ class RegistroController{
         }
         
         $alertas = Usuario::getAlertas();
+        
         $router->render('auth/confirmar-cuenta',
             ['alertas' => $alertas]
         );
