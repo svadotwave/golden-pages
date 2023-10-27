@@ -63,7 +63,7 @@ class RegistroController{
 
         }
 
-        $router->render('auth/registrarse', [
+        $router->render('signup/registrarse', [
             'usuario' => $usuario,
             'alertas' => $alertas
         ]);
@@ -91,14 +91,14 @@ class RegistroController{
         }
         
         $alertas = Usuario::getAlertas();
-        
-        $router->render('auth/confirmar-cuenta',
+
+        $router->render('signup/confirmar-cuenta',
             ['alertas' => $alertas]
         );
     }
 
     public static function mensaje(Router $router) {
 
-        $router->render('auth/mensaje');
+        $router->render('signup/mensaje');
     }
 }
