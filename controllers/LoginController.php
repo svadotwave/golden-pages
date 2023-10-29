@@ -104,8 +104,51 @@ class LoginController {
     }
 
     public static function recuperarContraseña(Router $router) {
+
+        $alertas = [];
+
+        // if(isset($_GET['token'])) {
+
+        // }
+
+        $token = s($_GET['token']);
+
+        // Buscar usuario por su token
+        $usuario = Usuario::where('token', $token);
+
+        if(empty($usuario)) {
+            Usuario::setAlerta('token', 'error', 'Token no valido');
+        }
+
+
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // LEER EL NUEVO PASSWORD Y GUARDARLO
+            $password = new Usuario($_POST);
+
+            $alertas = $password->validarPassword();
+
+            if(empty($alertas)) {
+
+                $usuario->password = null;
+                $usuario->password = $password->password;
+                $usuario->hashPassword();
+                $usuario->token = null;
+
+                $resultado = $usuario->guardar($usuario->id_usuario);
+
+                if($resultado) {
+                    header('Location: /login');
+                }
+            }
+        }
+
+        $alertas = Usuario::getAlertas();
         
-        $router->render('auth/recuperar-contraseña');
+        $router->render('auth/recuperar-contraseña', [
+            'alertas' => $alertas,
+            'token' => $usuario->token
+        ]);
 
     }
 
