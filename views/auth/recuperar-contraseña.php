@@ -7,13 +7,13 @@
         action="/olvide-contraseña">
         <fieldset>
             <legend>
-                <h1>Olvide mi contraseña</h1>
+                <h1>Reestablecer Contraseña</h1>
             </legend>
 
-            <label class="h3-2">Reestablece tu contraseña escribiendo tu correo a continiación</label>
+            <label class="h3-2">Coloca tu nueva contraseña</label>
 
             <label class="block m-t-18 h3-2" for="">
-                CORREO*
+                CONTRASEÑA*
                 <input 
                     class="block p-t-5 input-text" 
                     type="email"

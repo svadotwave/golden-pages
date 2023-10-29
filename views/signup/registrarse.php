@@ -4,7 +4,7 @@
     <form 
         class="from" 
         method="POST"
-        action="">
+        action="/registrarse">
         <fieldset>
             <legend>
                 <h1>Registrarse</h1>

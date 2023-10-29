@@ -18,27 +18,70 @@
 <body>
 
     <header id="menu_top">
-        <div class="content_menu_top content-pages">
-            <a class="logo" href="/">
-                <i class="fa-solid fa-book-open" style="color: #ffffff; font-size: 48px"></i>
-                <span class="title-main">GOLDEN PAGES</span>
-            </a>
+        <div class="content-pages content_menu_top">
+
+            <!-- item 1 - logo-->
+            <div class="item_menu_top">
+                <a class="logo" href="/">
+                    <i class="fa-solid fa-book-open" style="color: #ffffff; font-size: 48px"></i>
+                    <span class="title-main m-izq-10">GOLDEN PAGES</span>
+                </a>
+            </div>
             
+            <!-- item 2 - opciones-->
             <?php 
             $current_url = $_SERVER['REQUEST_URI'];
             if($current_url === '/') {
-            ?>
-            
-            <div class="buttons">
-                <div class="btn-2">
-                    <a href="/login">Iniciar Sesión</a>
-                </div>
-                <div class="btn-1">
-                    <a href="/registrarse">Registrarse</a>
-                </div>
-            </div>
+                if(isset($_SESSION['login'])) { ?>
+                    <div class="item_menu_top">
+                        <div class="btn-2">
+                            <a href="/login">
+                                <?php echo $_SESSION['nombre']; ?>
+                            </a>
+                        </div>
+                        <div class="btn-1 m-izq-10">
+                            <a href="/logout">
+                                Cerrar sesión
+                            </a>
+                        </div>
+                    </div>
+                <?php    
+                } else { ?>
+                    <div class="item_menu_top">
+                        <div class="btn-2">
+                            <a href="/login">
+                                Iniciar sesión
+                            </a>
+                        </div>
+                        <div class="btn-1 m-izq-10">
+                            <a href="/registrarse">
+                                Registrarse
+                            </a>
+                        </div>
+                    </div>
+                <?php
+                }
+            } ?>
 
-            <?php } ?>
+            <!-- <div class="item_menu_top">
+                <div class="btn-2">
+                    <a href="/login">
+                        Iniciar sesión
+                    </a>
+                </div>
+                <div class="btn-1 m-izq-10">
+                    <a href="/login">
+                        Registrarse
+                    </a>
+                </div>
+            </div> -->
+
+        <!-- fin menu -->
+        </div>
+            
+
+
+
 
         </div>
     </header>
