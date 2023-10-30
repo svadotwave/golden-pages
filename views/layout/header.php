@@ -63,32 +63,13 @@
                 }
             } ?>
 
-            <!-- <div class="item_menu_top">
-                <div class="btn-2">
-                    <a href="/login">
-                        Iniciar sesión
-                    </a>
-                </div>
-                <div class="btn-1 m-izq-10">
-                    <a href="/login">
-                        Registrarse
-                    </a>
-                </div>
-            </div> -->
-
-        <!-- fin menu -->
-        </div>
-            
-
-
-
-
+            <!-- fin menu -->
         </div>
     </header>
 
-    <div class="content-pages">
+    <div class="content-pages body">
         <div id="main-start">
-            <?php echo $contenido; ?>
+                <?php echo $contenido; ?>        
         </div>
     </div>
 
