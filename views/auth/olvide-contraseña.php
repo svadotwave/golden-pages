@@ -58,7 +58,7 @@
             <input
                 class="btn-submit m-t-18 m-b-25" 
                 type="submit" 
-                value="Iniciar sesión" 
+                value="Enviar" 
                 readonly
             >
 
