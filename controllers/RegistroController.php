@@ -55,7 +55,7 @@ class RegistroController{
                         // usuario-> = $resultado['id'];
                         $usuario->id_usuario = $resultado['id'];
 
-                        header('Location: /mensaje');
+                        header('Location: /mensaje-confirmación');
                     }
                 }
 
@@ -99,6 +99,6 @@ class RegistroController{
 
     public static function mensaje(Router $router) {
 
-        $router->render('signup/mensaje');
+        $router->render('signup/mensaje-confirmación');
     }
 }

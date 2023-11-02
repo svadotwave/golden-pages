@@ -18,7 +18,7 @@ $router->post('/registrarse', [RegistroController::class, 'creaCuenta']);
 
 // Confirmar cuenta por email
 $router->get('/confirmar-cuenta', [RegistroController::class, 'confirmar']);
-$router->get('/mensaje', [RegistroController::class, 'mensaje']);
+$router->get('/mensaje-confirmación', [RegistroController::class, 'mensaje']);
 
 // Iniciar Sesión
 $router->get('/login', [LoginController::class, 'login']);
