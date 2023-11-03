@@ -8,6 +8,19 @@ class Indexcontroller {
 
     public static function inicio(Router $router) {
 
-        $router->render('inicio');
+        $pagina = 'inicio';
+
+        if(isset($_SESSION['login'])){
+
+            if($_SESSION['rol'] === '1') {
+                $pagina = 'dashboard-admin';
+            }
+
+            if($_SESSION['rol'] === '2') {
+                $pagina = 'dashboard-editor';
+            }
+        }
+        
+        $router->render("dashboard/" . $pagina);
     }
 }

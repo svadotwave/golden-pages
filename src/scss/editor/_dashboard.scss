@@ -22,7 +22,12 @@
     width: 100%;
     height: 75%;
     display: inline-block;
-    background-color: burlywood;
+    // background-color: burlywood;
+
+    img {
+        width: 100%;
+        height: 100%;
+    }
 }
 
 .edi-title {
