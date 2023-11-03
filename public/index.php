@@ -6,6 +6,7 @@ use MVC\Router;
 use Controllers\LoginController;
 use Controllers\RegistroController;
 use Controllers\Indexcontroller;
+use Controllers\EditorController;
 
 $router = new Router();
 
@@ -23,13 +24,18 @@ $router->get('/mensaje-confirmación', [RegistroController::class, 'mensaje']);
 // Iniciar Sesión
 $router->get('/login', [LoginController::class, 'login']);
 $router->post('/login', [LoginController::class, 'login']);
+
 $router->get('/logout', [LoginController::class, 'logout']);
 
 // Recuperar password
 $router->get('/olvide-contraseña', [LoginController::class, 'olvideContraseña']);
 $router->post('/olvide-contraseña', [LoginController::class, 'olvideContraseña']);
+
 $router->get('/recuperar-contraseña', [LoginController::class, 'recuperarContraseña']);
 $router->post('/recuperar-contraseña', [LoginController::class, 'recuperarContraseña']);
+
+// Editor
+$router->get('/dashboard-editor', [EditorController::class, 'view']);
 
 // Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador
 $router->comprobarRutas();

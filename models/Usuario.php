@@ -8,13 +8,14 @@ class Usuario extends ActiveRecord {
 
     protected static $tabla = 'usuarios';
     protected static $idColumn = 'id_usuario';
-    protected static $columnasDB = ['nombre_usuario', 'apellido_usuario', 'email', 'password', 'email_confirmado', 'token'];
+    protected static $columnasDB = ['nombre_usuario', 'apellido_usuario', 'email', 'password', 'rol', 'email_confirmado', 'token'];
 
     public $id_usuario;
     public $nombre_usuario;
     public $apellido_usuario;
     public $email;
     public $password;
+    public $rol;
     public $email_confirmado;
     public $token;
 

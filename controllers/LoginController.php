@@ -35,6 +35,7 @@ class LoginController {
                         $_SESSION['id'] = $usuario->id_usuario;
                         $_SESSION['nombre'] = $usuario->nombre_usuario;
                         $_SESSION['email'] = $usuario->email;
+                        $_SESSION['rol'] = $usuario->rol;
                         $_SESSION['login'] = true;
                         
                         // Aqui ya se puede asignar roles
@@ -119,7 +120,6 @@ class LoginController {
         if(empty($usuario)) {
             Usuario::setAlerta('token', 'error', 'Token no valido');
         }
-
 
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
