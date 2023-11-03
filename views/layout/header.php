@@ -32,19 +32,76 @@
             <?php 
             $current_url = $_SERVER['REQUEST_URI'];
             if($current_url === '/') {
-                if(isset($_SESSION['login'])) { ?>
-                    <div class="item_menu_top">
-                        <div class="btn-2">
-                            <a href="/login">
-                                <?php echo $_SESSION['nombre']; ?>
-                            </a>
+                if(isset($_SESSION['login'])) {
+
+                    ?>
+                    <!-- <div class="btn-1 m-izq-10">
+                        <a href="/logout">
+                            Cerrar sesión
+                        </a>
+                    </div> -->
+                    <?php
+
+                    // debuguear($_SESSION['rol']);
+
+                    if($_SESSION['rol'] === '1'){ ?>
+
+                        <div class="item_menu_top">
+                            <div class="btn-2">
+                                <a href="/login">
+                                    <?php echo 'Administrador'; ?>
+                                </a>
+                            </div>
+                            <div class="btn-1 m-izq-10">
+                                <a href="/logout">
+                                    Cerrar sesión
+                                </a>
+                            </div>
                         </div>
-                        <div class="btn-1 m-izq-10">
-                            <a href="/logout">
-                                Cerrar sesión
-                            </a>
+
+                    <?php    
+                    }
+
+                    if($_SESSION['rol'] === '2'){ ?>
+
+                        <div class="item_menu_top">
+                            <div class="btn-2">
+                                <a href="/login">
+                                    <?php echo 'editor'; ?>
+                                </a>
+                            </div>
+                            <div class="btn-1 m-izq-10">
+                                <a href="/logout">
+                                    Cerrar sesión
+                                </a>
+                            </div>
                         </div>
-                    </div>
+                    
+                    <?php
+                    }
+
+                    if($_SESSION['rol'] === '3') { ?>
+
+                        <div class="item_menu_top">
+                            <div class="btn-2">
+                                <a href="/login">
+                                    <?php echo 'Cliente'; ?>
+                                </a>
+                            </div>
+                            <div class="btn-1 m-izq-10">
+                                <a href="/logout">
+                                    Cerrar sesión
+                                </a>
+                            </div>
+                        </div>
+
+                    <?php
+                    }
+                    ?>
+
+                    
+
+
                 <?php    
                 } else { ?>
                     <div class="item_menu_top">

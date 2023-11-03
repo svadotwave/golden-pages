@@ -42,6 +42,9 @@ class RegistroController{
                     // Generar un token único
                     $usuario->crearToken();
 
+                    // rol de cliente
+                    $usuario->rol = 3;
+
                     // Enviar el email
                     $email = new Email($usuario->email, $usuario->nombre_usuario, $usuario->token);
                     $email->enviarConfirmacion();
