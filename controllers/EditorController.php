@@ -8,7 +8,7 @@ class EditorController{
 
     public static function view(Router $router) {
 
-        $router->render('editor/dashboard-editor');
+        $router->render('editor/adm-categorias');
     }
 
 }
