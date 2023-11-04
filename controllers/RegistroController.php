@@ -53,7 +53,6 @@ class RegistroController{
                     $resultado = $usuario->guardar($usuario->id_usuario); // devuelve 'resultado' = true|false y 'id' = # (al que corresponda)
 
 
-
                     if($resultado) { // Si es true se guardo el Usuario
                         // usuario-> = $resultado['id'];
                         $usuario->id_usuario = $resultado['id'];

@@ -9,3 +9,5 @@
         </div>
     </a>
 </footer>
+
+<script src="build/js/app.js"></script>

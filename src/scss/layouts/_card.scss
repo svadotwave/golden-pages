@@ -1,0 +1,48 @@
+/* Estilo para la tarjeta */
+.card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-block: 10px;
+    width: 100%;
+}
+
+.card-body {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Estilo para el título de la tarjeta */
+.card-title {
+    font-size: 18px;
+    color: #333;
+    margin: 0;
+}
+
+.card-item-titulo {
+    display: flex;
+    align-items: center;
+}
+
+.card-item-botones {
+    display: flex;
+}
+
+.card-item {
+    padding: 5px;
+}
+
+.nro {
+    margin-right: 20px;
+    width: 40px;
+    text-align: center;
+}
+
+.block-inline {
+    display: inline-block;
+}
+
+.bg-agregar {
+    display: flex;
+    flex-direction: row-reverse;
+}

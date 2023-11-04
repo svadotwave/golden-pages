@@ -42,6 +42,91 @@
     );
 }
 
+.btn-agregar {
+
+    padding-top: 1.379rem;
+    padding-bottom: 1.3rem;
+    padding-inline: 1.7rem;
+    border-radius: .6rem;
+    width: auto;
+    height: 4.0rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: var.$color-5;
+    font-family: 'League Spartan', sans-serif;
+    font-style: normal;
+    font-display: swap;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.7;
+    letter-spacing: 0.15px;
+    word-spacing: 1.05px;
+    color: var.$text-color-white;
+
+    &:hover {
+        cursor: pointer;
+        background-color: var.$color-5-hover;
+    }
+}
+
+.btn-modificar {
+    padding-top: 0.4rem;
+    padding-inline: 1.7rem;
+    border-radius: .6rem;
+    width: auto;
+    height: 4.0rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0px;
+
+    background-color: var.$color-1;
+    font-family: 'League Spartan', sans-serif;
+    font-style: normal;
+    font-display: swap;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.7;
+    letter-spacing: 0.15px;
+    word-spacing: 1.05px;
+    color: var.$text-color-white;
+
+    &:hover {
+        cursor: pointer;
+        background-color: var.$color-1-hover;
+    }
+}
+
+.btn-eliminar {
+        padding-top: 0.4rem;
+        padding-inline: 1.7rem;
+        border-radius: .6rem;
+        width: fit-content;
+        height: 4.0rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 0px;
+    
+        background-color: var.$color-4;
+        font-family: 'League Spartan', sans-serif;
+        font-style: normal;
+        font-display: swap;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 1.7;
+        letter-spacing: 0.15px;
+        word-spacing: 1.05px;
+        color: var.$text-color-white;
+    
+        &:hover {
+            cursor: pointer;
+            background-color: var.$color-4-hover;
+        }
+}
+
 .btn-submit {
     @include mxs.font-primary();
     background-color: var.$color-1;
@@ -62,6 +147,30 @@
     &:hover {
         border: none;
         background-color: var.$color-1-hover;
+    }
+
+}
+
+.btn-submit-delete {
+    @include mxs.font-primary();
+    background-color: var.$color-4;
+    padding-top: 0.5rem;
+    padding-inline: 1.7rem;
+    border-radius: .6rem;
+    display: block;
+    width: 100%;
+    height: 4.0rem;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var.$text-color-white;
+    cursor: pointer;
+    border: none;
+
+
+    &:hover {
+        border: none;
+        background-color: var.$color-4-hover;
     }
 
 }

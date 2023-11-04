@@ -37,7 +37,8 @@ $router->post('/recuperar-contraseña', [LoginController::class, 'recuperarContr
 // Editor
 $router->get('/dashboard-editor', [EditorController::class, 'view']);
 
-$router->get('/adm-categorias', [EditorController::class, 'view']);
+$router->get('/adm-categorias', [EditorController::class, 'crearCategoria']);
+$router->post('/adm-categorias', [EditorController::class, 'crearCategoria']);
 
 // Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador
 $router->comprobarRutas();
