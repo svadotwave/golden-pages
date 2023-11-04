@@ -31,6 +31,8 @@ function css() {
 
 function javascript() {
     return src(paths.js)
+        .pipe(sourcemaps.init())
+        .pipe(concat('app.js'))
       .pipe(terser())
       .pipe(sourcemaps.write('.'))
       .pipe(dest('public/build/js'));

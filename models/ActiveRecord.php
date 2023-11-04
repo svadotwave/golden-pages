@@ -147,7 +147,7 @@ class ActiveRecord {
             // Insertar en la base de datos
             $query = " INSERT INTO " . static::$tabla . " ( ";
             $query .= join(', ', array_keys($atributos));
-            $query .= " ) VALUES (' "; 
+            $query .= " ) VALUES ('"; 
             $query .= join("', '", array_values($atributos));
             $query .= "' ) ";
 
@@ -183,8 +183,8 @@ class ActiveRecord {
         }
     
         // Eliminar un Registro por su ID
-        public function eliminar() {
-            $query = "DELETE FROM "  . static::$tabla . " WHERE id = " . self::$db->escape_string(self::$idColumn) . " LIMIT 1";
+        public function eliminar($id) {
+            $query = "DELETE FROM "  . static::$tabla . " WHERE " . $this::$idColumn ." = " . self::$db->escape_string($id) . " LIMIT 1";
             $resultado = self::$db->query($query);
             return $resultado;
         }
