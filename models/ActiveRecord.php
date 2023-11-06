@@ -116,9 +116,10 @@ class ActiveRecord {
         }
     
         // Busca un registro por su id
-        public static function find($id) {
-            $query = "SELECT * FROM " . static::$tabla  ." WHERE id = " . $id;
+        public static function find($nameId, $id) {
+            $query = "SELECT * FROM " . static::$tabla  ." WHERE " . $nameId ." = " . $id;
             $resultado = self::consultarSQL($query);
+            
             return array_shift( $resultado ) ;
         }
 
@@ -150,7 +151,7 @@ class ActiveRecord {
             $query .= " ) VALUES ('"; 
             $query .= join("', '", array_values($atributos));
             $query .= "' ) ";
-
+            
             // Resultado de la consulta
             $resultado = self::$db->query($query);
             
@@ -176,7 +177,6 @@ class ActiveRecord {
             $query .=  join(', ', $valores );
             $query .= " WHERE " . $this::$idColumn ." = " . self::$db->escape_string($id) . " ";
             $query .= " LIMIT 1 ";
-    
             // Actualizar BD
             $resultado = self::$db->query($query);
             return $resultado;

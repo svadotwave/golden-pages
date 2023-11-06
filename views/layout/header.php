@@ -83,12 +83,96 @@
                     if($_SESSION['rol'] === '3') { ?>
 
                         <div class="item_menu_top">
-                            <div class="btn-2">
-                                <a href="/login">
+
+                            <?php
+                            if($_SESSION['autor']) { ?>
+
+                                <div class="btn-1">
+                                    <a href="/autor">
+                                        Autor
+                                    </a>
+                                </div>
+
+                            <?php 
+                            } else {
+                            ?>
+                                <div class="bg-agregar">
+                                    <div class="block-inline">
+                                        <div id="btn-mod-cAutor" class="btn-modificar">
+                                            Ser Autor
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <?php 
+                            }
+                            ?>
+
+                            <!-- Modal de Autor -->
+                            <div class="modal-background" id="bg-mod-cAutor"></div>
+                            <div class="modal-content" id="cont-mod-cAutor">
+                                <div class="dentro-modal">
+                                    <!-- formulario -->
+                                <form 
+                                    class="from" 
+                                    method="POST"
+                                    action="/autor"
+                                    enctype="multipart/form-data">
+                                    <fieldset>
+                                        <legend class="titulo">
+                                            <h1>Ser Autor</h1>
+                                        </legend>
+
+                                        <label class="block h3-2" for="">
+                                            NOMBRE*
+                                            <input 
+                                                class="block p-t-5 input-text" 
+                                                type="text"
+                                                name="nombre_usuario"
+                                                value="<?php echo $_SESSION['nombre'] ?>"
+                                                placeholder="categoria">
+                                        </label>
+
+                                        <label class="block h3-2 m-t-18" for="">
+                                            APELLIDO*
+                                            <input 
+                                                class="block p-t-5 input-text" 
+                                                type="text"
+                                                name="apellido_usuario"
+                                                value="<?php echo $_SESSION['apellido'] ?>"
+                                                placeholder="categoria">
+                                        </label>
+
+                                        <label class="block h3-2 m-t-18" for="">
+                                            BIOGRAFIA*
+                                            <input 
+                                                class="block p-t-5 input-text" 
+                                                type="text"
+                                                name="biografia"
+                                                value=""
+                                                placeholder="categoria">
+                                        </label>
+
+                                        <!-- button -->
+                                        <input
+                                            class="btn-submit m-t-18 m-b-25" 
+                                            type="submit" 
+                                            value="GUARDAR" 
+                                            readonly
+                                        >
+
+                                    </fieldset>
+                                </form>
+                                </div>
+                            </div>
+                            <!-- fin de modal -->
+
+                            <div class="btn-2 m-izq-10">
+                                <a href="/">
                                     <?php echo 'Cliente'; ?>
                                 </a>
                             </div>
-                            <div class="btn-1 m-izq-10">
+                            <div class="btn-4 m-izq-10">
                                 <a href="/logout">
                                     Cerrar sesión
                                 </a>
@@ -98,10 +182,6 @@
                     <?php
                     }
                     ?>
-
-                    
-
-
                 <?php    
                 } else { ?>
                     <div class="item_menu_top">
@@ -118,7 +198,23 @@
                     </div>
                 <?php
                 }
-            } ?>
+            } else { 
+                if($current_url === '/autor') {?>
+                    <div class="item_menu_top">
+                        <div class="btn-2 m-izq-10">
+                            <a href="/">
+                                <?php echo 'Cliente'; ?>
+                            </a>
+                        </div>
+                        <div class="btn-4 m-izq-10">
+                            <a href="/logout">
+                                Cerrar sesión
+                            </a>
+                        </div>
+                    </div>
+            <?php 
+                }
+            }?>
 
             <!-- fin menu -->
         </div>

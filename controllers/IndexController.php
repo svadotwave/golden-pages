@@ -3,12 +3,19 @@
 namespace Controllers;
 
 use MVC\Router;
+use Models\Libro;
 
 class Indexcontroller {
 
     public static function inicio(Router $router) {
 
         $pagina = 'inicio';
+
+        $libro = new Libro();
+
+        $libros = $libro->all();
+
+        // debuguear($_SESSION['autor']);
 
         if(isset($_SESSION['login'])){
 
@@ -21,6 +28,8 @@ class Indexcontroller {
             }
         }
         
-        $router->render("dashboard/" . $pagina);
+        $router->render("dashboard/" . $pagina, [
+            'libros' => $libros
+        ]);
     }
 }
