@@ -8,7 +8,7 @@
         </a>
     </div>
     <div class="edi-item">
-        <a href="" class="edi-img">
+        <a href="/adm-libros" class="edi-img">
             <img src="/build/img/adm-libros.webp" alt="">
         </a>
         <a href="" class="edi-title">

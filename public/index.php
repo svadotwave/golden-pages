@@ -7,6 +7,7 @@ use Controllers\LoginController;
 use Controllers\RegistroController;
 use Controllers\Indexcontroller;
 use Controllers\EditorController;
+use Controllers\AutorController;
 
 $router = new Router();
 
@@ -39,6 +40,14 @@ $router->get('/dashboard-editor', [EditorController::class, 'view']);
 
 $router->get('/adm-categorias', [EditorController::class, 'crearCategoria']);
 $router->post('/adm-categorias', [EditorController::class, 'crearCategoria']);
+
+$router->get('/adm-libros', [EditorController::class, 'crearLibros']);
+$router->post('/adm-libros', [EditorController::class, 'crearLibros']);
+
+//Autor
+$router->get('/autor', [AutorController::class, 'crearAutor']);
+$router->post('/autor', [AutorController::class, 'crearAutor']);
+
 
 // Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador
 $router->comprobarRutas();

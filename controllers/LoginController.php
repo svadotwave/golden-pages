@@ -5,6 +5,7 @@ namespace Controllers;
 use FileServices\Email;
 use MVC\Router;
 use Models\Usuario;
+use Models\Autor;
 
 class LoginController {
 
@@ -28,15 +29,25 @@ class LoginController {
                     // Verificar la contraseña
                     if($usuario->comprobarPassAndVerificado($auth->password)) {
                         // Autenticar al usuario
+
+                        $autor = new Autor();
+                        $autorFind = $autor->find('id_usuario', $usuario->id_usuario);
+
+                        if($autorFind) {
+                            $autorFind = true;
+                        }
+
                         if(!isset($_SESSION)) {
                             session_start();
                         }
 
                         $_SESSION['id'] = $usuario->id_usuario;
                         $_SESSION['nombre'] = $usuario->nombre_usuario;
+                        $_SESSION['apellido'] = $usuario->apellido_usuario;
                         $_SESSION['email'] = $usuario->email;
                         $_SESSION['rol'] = $usuario->rol;
                         $_SESSION['login'] = true;
+                        $_SESSION['autor'] = $autorFind;
                         
                         // Aqui ya se puede asignar roles
                         header('Location: /');

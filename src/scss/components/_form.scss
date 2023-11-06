@@ -27,6 +27,27 @@
      }
 }
 
+.input-area {
+    height: 100px;
+}
+
+.input-select {
+    font-family: 'League Spartan', sans-serif;
+    width: 40rem;
+    height: 4rem;
+    font-style: normal;
+    font-display: swap;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 15px;
+    letter-spacing: -0.25;
+    padding-left: 2rem;
+    padding-top: 1.2rem;
+    padding-bottom: 1rem;
+    border: 1px solid;
+    border-radius: 0.6rem;
+}
+
 .m-b-18 {
     margin-bottom: 1.8rem;
 }
