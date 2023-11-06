@@ -4,6 +4,8 @@ namespace Controllers;
 
 use Models\Categoria;
 use Models\Libro;
+use Models\Usuario;
+use Models\Autor;
 use MVC\Router;
 
 class EditorController{
@@ -123,6 +125,53 @@ class EditorController{
         $router->render('editor/adm-libros', [
             'libros' => $leerLibros,
             'categorias' => $allCategoria
+        ]);
+    }
+
+    public static function crearAutores(Router $router) {
+
+        $usuario = new Usuario();
+        $autor = new Autor();
+     
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $usuario->nombre_usuario = $_POST['nombre_usuario'];
+            $usuario->apellido_usuario = $_POST['apellido_usuario'];
+            $usuario->rol = 0;
+
+            // guardar usuario
+            $usuario->guardar($usuario->id_usuario);
+            $resultado = $usuario->ultimoID('id_usuario');
+
+            // guardar autor
+            $autor->id_usuario = $resultado->id_usuario;
+            $autor->guardar($autor->id_autor);
+
+            
+
+            // Update - Modificar
+            if($_POST['tipo'] === 'modificar'){
+            }
+
+            // Delete - Eliminar
+            if($_POST['tipo'] === 'eliminar'){
+            }
+
+            // Create - Crear
+
+            
+            header('Location: /adm-autores');
+                    
+        }
+
+        $allAutores = $autor->all();
+
+
+
+        $router->render('editor/adm-autores', [
+            'autores' => $allAutores,
+            'usuario' => $usuario
         ]);
     }
 

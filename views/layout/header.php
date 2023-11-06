@@ -96,7 +96,7 @@
                             <?php 
                             } else {
                             ?>
-                                <div class="bg-agregar">
+                                <div class="">
                                     <div class="block-inline">
                                         <div id="btn-mod-cAutor" class="btn-modificar">
                                             Ser Autor

@@ -44,6 +44,9 @@ $router->post('/adm-categorias', [EditorController::class, 'crearCategoria']);
 $router->get('/adm-libros', [EditorController::class, 'crearLibros']);
 $router->post('/adm-libros', [EditorController::class, 'crearLibros']);
 
+$router->get('/adm-autores', [EditorController::class, 'crearAutores']);
+$router->post('/adm-autores', [EditorController::class, 'crearAutores']);
+
 //Autor
 $router->get('/autor', [AutorController::class, 'crearAutor']);
 $router->post('/autor', [AutorController::class, 'crearAutor']);

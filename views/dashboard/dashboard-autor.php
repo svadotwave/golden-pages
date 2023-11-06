@@ -14,7 +14,7 @@
 <div class="modal-content" id="cont-mod-cLibAu">
     <div class="dentro-modal">
         <!-- formulario -->
-    <form 
+        <form 
         class="from" 
         method="POST"
         action="/adm-libros"
@@ -31,37 +31,69 @@
                     type="text"
                     name="nombre_libro"
                     value=""
-                    placeholder="categoria">
+                    required
+                    placeholder="título">
             </label>
 
-            <label class="block h3-2" for="">
-                DESCRIPCIÓN DEL LIBRO*
+            <label class="block h3-2 m-t-18" for="">
+                PORTADA (PNG,JPG)*
                 <input 
-                    class="block p-t-5 input-text" 
-                    type="text"
-                    name="descrip_libro"
+                    class="block p-t-5" 
+                    type="file"
+                    name="img_libro"
                     value=""
-                    placeholder="categoria">
+                    required
+                    accept=".png, .jpg">
             </label>
 
-            <label class="block h3-2" for="">
+            <label class="block h3-2 m-t-18" for="">
+                CONTENIDO (PDF)*
+                <input 
+                    class="block p-t-5" 
+                    type="file"
+                    name="content_libro"
+                    value=""
+                    required
+                    accept=".pdf">
+            </label>
+
+            <label class="block h3-2 m-t-18" for="">
                 PRECIO*
                 <input 
                     class="block p-t-5 input-text" 
                     type="text"
                     name="precio_libro"
                     value=""
-                    placeholder="categoria">
+                    required
+                    placeholder="precio">
             </label>
 
-            <label class="block h3-2" for="">
-                PORTADA*
-                <input 
-                    class="block p-t-5 input-text" 
-                    type="file"
-                    name="img_libro"
+            <label class="block h3-2 m-t-18" for="">
+                CATEGORIA*
+                <select 
+                    class="block p-t-5 input-select"
+                    name="id_categoria">
+                
+                    <?php
+                    // Iterar sobre el arreglo y generar opciones
+                    foreach ($categorias as $cat) { ?>
+                        <option value="<?php echo $cat->id_categoria; ?>" >
+                            <?php echo $cat->nombre_categoria; ?>
+                        </option>
+                    <?php
+                    }
+                    ?>
+                </select>
+            </label>
+
+            <label class="block h3-2 m-t-18" for="">
+                DESCRIPCIÓN DEL LIBRO*
+                <textarea
+                    class="block p-t-5 input-text input-area"
+                    name="descrip_libro"
+                    placeholder="Descripción"
                     value=""
-                    placeholder="categoria">
+                    required></textarea>
             </label>
 
             <!-- button -->
@@ -86,6 +118,18 @@
             <div class="card-item">
                 <span class="h3-2">Nombre</span>
             </div>
+            <div class="card-item">
+                <span class="h3-2">Portada</span>
+            </div>
+            <div class="card-item">
+                <span class="h3-2">Precio</span>
+            </div>
+            <div class="card-item">
+                <span class="h3-2">Estado</span>
+            </div>
+            <div class="card-item">
+                <span class="h3-2">Publicado</span>
+            </div>
         </div>
     </div>
 </div>
@@ -109,11 +153,21 @@ if (!empty($libros)) {
                         </span>
                     </div>
                     <div class="card-item">
-                        <img src="<?php echo $libro->img_libro ?>" alt="" style="width: 120px; height: 140px;">
+                        <img src="<?php echo $libro->img_libro ?>" alt="" style="width: 40px; height: 40px;">
                     </div>
                     <div class="card-item">
                         <span class="h3-2">
                             <?php echo $libro->precio_libro ?>
+                        </span>
+                    </div>
+                    <div class="card-item">
+                        <span class="h3-2">
+                            <?php echo $libro->estado ?>
+                        </span>
+                    </div>
+                    <div class="card-item">
+                        <span class="h3-2">
+                            <?php echo $libro->publicado ?>
                         </span>
                     </div>
                 </div>
