@@ -5,15 +5,13 @@ namespace Controllers;
 use MVC\Router;
 use Models\Libro;
 
-class Indexcontroller {
+class UsuarioController {
 
-    public static function inicio(Router $router) {
+    public static function vistaPrincipal(Router $router) {
 
-        $pagina = 'inicio';
-
+        $pagina = 'dashboard-usuario';
         $libro = new Libro();
-
-        $libros = $libro->all();
+        $allLibros = $libro->all();
 
         // debuguear($_SESSION['autor']);
 
@@ -29,7 +27,7 @@ class Indexcontroller {
         }
         
         $router->render("dashboard/" . $pagina, [
-            'libros' => $libros
+            'libros' => $allLibros
         ]);
     }
 }
