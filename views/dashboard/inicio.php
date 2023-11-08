@@ -13,31 +13,37 @@
 ?>
 
 
-<div class="tarjetas">
+
+<?php
+if (!empty($libros)) { ?>
+    
+    <div class="tarjetas">
     <?php
-    if (!empty($libros)) {
-        $contador = 1;
-        
-        foreach ($libros as $libro) { ?>
-            <div class="item-card">
+    foreach ($libros as $libro) { ?>
+        <div class="item-card">
 
-                <div class="img-card">
-                    <img src="<?php echo $libro->img_libro ?>" alt="portada no disponible..." >
-                </div>
-
-                <div class="info-card">
-                    <h3 class="text-card"> <?php echo $libro->nombre_libro ?> </h3>
-                    <p class="h3-2"> $ <?php echo $libro->precio_libro ?> </p>
-                </div>
-                
+            <div class="img-card">
+                <img src="<?php echo $libro->img_libro ?>" alt="portada no disponible..." >
             </div>
+
+            <div class="info-card">
+                <h3 class="text-card"> <?php echo $libro->nombre_libro ?> </h3>
+                <p class="h3-2"> $ <?php echo $libro->precio_libro ?> </p>
+            </div>
+            
+        </div>
     <?php
-    $contador++;
-    }
-} else {
-    echo "No se encontraron resultados.";
+    } ?>
+    </div>
+<?php
+} else { ?>
+
+<h3 class="center">No se encontraron resultados.</h3>
+
+<?php
 }
 ?>
-</div>
+
+
 
 
