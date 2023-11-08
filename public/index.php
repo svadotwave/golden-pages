@@ -5,16 +5,16 @@ require_once __DIR__ . '/../includes/app.php';
 use MVC\Router;
 use Controllers\LoginController;
 use Controllers\RegistroController;
-use Controllers\Indexcontroller;
+use Controllers\UsuarioController;
 use Controllers\EditorController;
 use Controllers\AutorController;
 
 $router = new Router();
 
 // Index
-$router->get('/', [Indexcontroller::class, 'inicio']);
+$router->get('/', [UsuarioController::class, 'vistaPrincipal']);
 
-// Crear Cuenta
+// Registrarse
 $router->get('/registrarse', [RegistroController::class, 'creaCuenta']);
 $router->post('/registrarse', [RegistroController::class, 'creaCuenta']);
 
