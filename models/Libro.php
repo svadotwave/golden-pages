@@ -8,7 +8,7 @@ class Libro extends ActiveRecord {
 
     protected static $tabla = 'libros';
     protected static $idColumn = 'id_libro';
-    protected static $columnasDB = ['nombre_libro', 'descrip_libro', 'precio_libro', 'img_libro', 'content_libro', 'estado', 'publicado', 'id_autor', 'id_categoria'];
+    protected static $columnasDB = ['nombre_libro', 'descrip_libro', 'precio_libro', 'img_libro', 'content_libro', 'estado', 'id_autor', 'id_categoria'];
 
     public $id_libro;
     public $nombre_libro;
@@ -17,7 +17,6 @@ class Libro extends ActiveRecord {
     public $img_libro;
     public $content_libro;
     public $estado;
-    public $publicado;
     public $id_autor;
     public $id_categoria;  
 
@@ -30,7 +29,6 @@ class Libro extends ActiveRecord {
         $this->img_libro = $args['img_libro'] ?? '';
         $this->content_libro = $args['content_libro'] ?? '';
         $this->estado = $args['estado'] ?? '';
-        $this->publicado = $args['publicado'] ?? '';
         $this->id_autor = $args['id_autor'] ?? '';
         $this->id_categoria = $args['id_categoria'] ?? '';
         

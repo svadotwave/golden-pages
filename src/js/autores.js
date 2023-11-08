@@ -82,6 +82,63 @@ if (currentURL.includes("adm-autores")) {
         cont_mod_cEdAu.style.display = "none";
         bg_mod_cEdAu.style.display = "none";
     });
+
+    // Modificar
+    document.addEventListener("DOMContentLoaded", function() {
+        var btn_mod_mEdAu = document.querySelectorAll(".btn-mod-mEdAu");
+
+        btn_mod_mEdAu.forEach(function(button) {
+            button.addEventListener("click", function() {
+
+                var id_autor = button.getAttribute("data-id");
+
+                console.log('hola' + id_autor);
+
+                var modal = document.getElementById("cont-mod-mEdAu-" + id_autor);
+                var modalBackground = document.getElementById("bg-mod-mEdAu-" + id_autor);
+
+                modal.style.display = "block";
+                modalBackground.style.display = "block";
+
+                // Cerrar Modal al hacer clic en el fondo oscuro
+                modalBackground.addEventListener("click", function() {
+                    modal.style.display = "none";
+                    modalBackground.style.display = "none";
+                });
+            });
+        });
+    });
+
+    // Eliminar
+    document.addEventListener("DOMContentLoaded", function() {
+        var btn_mod_eEdAu = document.querySelectorAll(".btn-mod-eEdAu");
+
+        btn_mod_eEdAu.forEach(function(button) {
+            button.addEventListener("click", function() {
+
+                var id_autor = button.getAttribute("data-id");
+
+                var modal = document.getElementById("cont-mod-eEdAu-" + id_autor);
+                var modalBackground = document.getElementById("bg-mod-eEdAu-" + id_autor);
+                var closeModalButton = document.getElementById("close-eEdAu-" + id_autor);
+
+                modal.style.display = "block";
+                modalBackground.style.display = "block";
+
+                // Cerrar Modal al hacer clic en el fondo oscuro
+                modalBackground.addEventListener("click", function() {
+                    modal.style.display = "none";
+                    modalBackground.style.display = "none";
+                });
+
+                // Cerrar modal al hacer clic en la "X" de cierre
+                closeModalButton.addEventListener("click", function() {
+                modal.style.display = "none";
+                modalBackground.style.display = "none";
+                });
+            });
+        });
+    });
 }
 
 
