@@ -1,0 +1,52 @@
+/* Estilo para la tarjeta */
+.table {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 10px;
+    display: flex;
+}
+
+.bg-table {
+    background-color: ghostwhite;
+}
+
+.table-body {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.table-item {
+    margin-top: 4px;
+    width: 100%;
+    text-align: center;
+}
+
+.nro {
+    margin-top: 4px;
+    width: 60px;
+    margin-right: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-actions {
+    margin-top: 4px;
+    min-width: 160px;
+    margin-left: 40px;
+    display: flex;
+    justify-content: space-around;
+}
+
+// -------------
+// boton agregar
+.bg-agregar {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between; /* Distribuye el contenido uniformemente */
+    margin-bottom: 10px;
+}

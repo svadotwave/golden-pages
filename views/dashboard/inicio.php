@@ -1,4 +1,4 @@
-<h1>INICIO</h1>
+<h1>Libros Disponibles</h1>
 
 
 <?php 
@@ -20,8 +20,16 @@
         
         foreach ($libros as $libro) { ?>
             <div class="item-card">
-                <img src="<?php echo $libro->img_libro ?>" alt="Libro 1" class="img-card" >
-                <h3> <?php echo $libro->nombre_libro ?> </h3>
+
+                <div class="img-card">
+                    <img src="<?php echo $libro->img_libro ?>" alt="portada no disponible..." >
+                </div>
+
+                <div class="info-card">
+                    <h3 class="text-card"> <?php echo $libro->nombre_libro ?> </h3>
+                    <p class="h3-2"> $ <?php echo $libro->precio_libro ?> </p>
+                </div>
+                
             </div>
     <?php
     $contador++;

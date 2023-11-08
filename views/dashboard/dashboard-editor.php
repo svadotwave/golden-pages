@@ -16,11 +16,11 @@
         </a>    
     </div>
     <div class="edi-item">
-        <a href="" class="edi-img">
+        <a href="/adm-autores" class="edi-img">
         <img src="/build/img/publicaciones.png" alt="">
         </a>
         <a href="" class="edi-title">
-            <h2>Administrar Publicaciones</h2>
+            <h2>Administrar Autores</h2>
         </a>
     </div>
 </div>

@@ -131,6 +131,13 @@ class ActiveRecord {
             
             return array_shift( $resultado ) ;
         }
+
+        public static function ultimoID($id) {
+            $query = "SELECT * FROM " . static::$tabla . " ORDER BY " . $id . " DESC LIMIT 1";
+            $resultado = self::consultarSQL($query);
+            
+            return array_shift( $resultado ) ;
+        }
     
         // Obtener Registros con cierta cantidad
         public static function get($limite) {
@@ -188,6 +195,4 @@ class ActiveRecord {
             $resultado = self::$db->query($query);
             return $resultado;
         }
-
-
 }
