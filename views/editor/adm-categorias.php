@@ -204,7 +204,9 @@ if (!empty($categorias)) {
     <?php
     $contador++;
     }
-} else {
-    echo "No se encontraron resultados.";
+} else { ?>
+
+    <h3 class="center">No se encontraron resultados. Agrega una nueva Categoria</h3>
+<?php
 }
 ?>

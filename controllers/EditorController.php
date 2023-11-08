@@ -148,7 +148,7 @@ class EditorController{
             }
 
             // estado
-            $libro->estado = 1;
+            $libro->estado_libro = 1;
 
             $libro->guardar($libro->id_libro);
             

@@ -443,7 +443,9 @@ if (!empty($libros)) {
     <?php
     $contador++;
     }
-} else {
-    echo "No se encontraron resultados.";
+} else {?>
+
+    <h3 class="center">No se encontraron resultados. Agrega un nuevo Libro</h3>
+<?php
 }
 ?>

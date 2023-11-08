@@ -230,7 +230,9 @@ if (!empty($autores)) {
     <?php
     $contador++;
     }
-} else {
-    echo "No se encontraron resultados.";
+} else { ?>
+
+    <h3 class="center">No se encontraron resultados. Agrega un nuevo Autor</h3>
+<?php
 }
 ?>
