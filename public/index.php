@@ -7,6 +7,7 @@ use Controllers\LoginController;
 use Controllers\RegistroController;
 use Controllers\UsuarioController;
 use Controllers\EditorController;
+use Controllers\CategoriaController;
 use Controllers\AutorController;
 
 $router = new Router();
@@ -38,8 +39,8 @@ $router->post('/recuperar-contraseña', [LoginController::class, 'recuperarContr
 // Editor
 $router->get('/dashboard-editor', [EditorController::class, 'view']);
 
-$router->get('/adm-categorias', [EditorController::class, 'crearCategoria']);
-$router->post('/adm-categorias', [EditorController::class, 'crearCategoria']);
+$router->get('/adm-categorias', [CategoriaController::class, 'gestionarCategoria']);
+$router->post('/adm-categorias', [CategoriaController::class, 'gestionarCategoria']);
 
 $router->get('/adm-libros', [EditorController::class, 'crearLibros']);
 $router->post('/adm-libros', [EditorController::class, 'crearLibros']);

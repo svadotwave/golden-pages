@@ -21,4 +21,16 @@ class Categoria extends ActiveRecord {
         $this->estado_categoria = $args['nombre_usuario'] ?? '';
     }
 
+    public function existeCategoria() {
+        $query = "SELECT * FROM " . self::$tabla . " WHERE nombre_categoria = '" . $this->nombre_categoria . "' LIMIT 1";
+
+        $resultado = self::$db->query($query);
+
+        if($resultado->num_rows) {
+            self::$alertas['error']['categoria'] = 'La Categoria ya está registrada';
+        } 
+
+        return $resultado;
+    }
+
 }
