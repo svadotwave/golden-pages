@@ -15,6 +15,8 @@ class CategoriaController {
 
         $categoria = new Categoria();
         $alertas = [];
+        $tipoAlerta = '';
+        $id_modificar = '';
         $categorias = self::leerCategorias($categoria);
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -24,6 +26,7 @@ class CategoriaController {
                 $addCategoria = self::addCategoria($categoria);
 
                 $alertas = $addCategoria['alertas'];
+                $tipoAlerta = 'agregar';
             }
 
             if($_POST['tipo'] === 'modificar') {
@@ -31,6 +34,8 @@ class CategoriaController {
                 $updCategoria = self::updCategoria($categoria);
 
                 $alertas = $updCategoria['alertas'];
+                $tipoAlerta = 'modificar';
+                $id_modificar = $_POST['id_categoria'];
                 
             }
 
@@ -54,11 +59,15 @@ class CategoriaController {
         }
 
         $alertasModal = json_encode($alertas);
+        $tipoAlertaModal = json_encode($tipoAlerta);
+        $idmodificarModal = json_encode($id_modificar);
 
         $router->render('editor/adm-categorias', [
             'categorias'=> $categorias,
             'alertas'=> $alertas,
-            'alertasModal'=> $alertasModal
+            'alertasModal'=> $alertasModal,
+            'tipoAlertaModal'=> $tipoAlertaModal,
+            'idmodificarModal' => $idmodificarModal
         ]);
     }
 
@@ -97,8 +106,6 @@ class CategoriaController {
         if($updCategoria->nombre_categoria === $_POST['nombre_categoria']) {
             
             $updCategoria->actualizar($id_categoria);
-            
-            header('Location: /adm-categorias');
 
         } else {
 

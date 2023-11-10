@@ -2,6 +2,8 @@
 
 <script>
     var alertasData = <?php echo $alertasModal; ?>;
+    var tipoAlertaData = <?php echo $tipoAlertaModal; ?>;
+    var idmodificarModal = <?php echo $idmodificarModal; ?>;  
 </script>
 
 <!-- btn - crear -->
@@ -129,6 +131,16 @@ if (!empty($categorias)) {
                                     value="<?php echo $categoria["nombre_categoria"]; ?>"
                                     placeholder="">
                             </label>
+
+                            <?php
+                            if(!empty($alertas)) {
+                                    if(array_key_exists('categoria', $alertas["error"])) { ?>
+                                        <label class="body-2 error block" for="">
+                                        <i class="fa-solid fa-circle-exclamation" style="color: #EC5757; font-size: 12px"></i>
+                                        <?php echo $alertas["error"]['categoria']; ?>
+                                        </label>
+                            <?php       } 
+                                    } ?>
                             
                             <input 
                                 type="hidden" 

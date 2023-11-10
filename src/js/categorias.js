@@ -23,6 +23,8 @@ if (currentURL.includes("/adm-categorias")) {
     // Modal - Agregar
     if (alertasData.length === 0) {
 
+        console.log('alertas SIN contenido');
+
         btn_add.addEventListener("click", () =>
             mostrarModal(cont_add, bg_add));
 
@@ -32,16 +34,31 @@ if (currentURL.includes("/adm-categorias")) {
 
     } else {
 
-        console.log('array con contenido');
+        console.log('alertas con contenido ->' + alertasData);
 
-        // Realiza otras acciones si no hay errores
-        mostrarModal(cont_add, bg_add)
+        if(tipoAlertaData === 'modificar') {
+            var cont_upd = document.getElementById(cont_upd_item + idmodificarModal);
+            var bg_upd = document.getElementById(bg_del_item + idmodificarModal);
+            
+            mostrarModal(cont_upd, bg_upd); 
+            
+            bg_upd.addEventListener("click", () => {
+                ocultarModal(cont_upd, bg_upd);
+                window.location.href = currentURL;
+            });
+        }
 
-        // Cerrar modal al hacer clic en el fondo oscuro
-        bg_add.addEventListener("click", () => {
-            ocultarModal(cont_add, bg_add);
-            window.location.href = currentURL;
-        });   
+        if(tipoAlertaData === 'agregar') {
+            // Realiza otras acciones si no hay errores
+            mostrarModal(cont_add, bg_add);
+
+            // Cerrar modal al hacer clic en el fondo oscuro
+            bg_add.addEventListener("click", () => {
+                ocultarModal(cont_add, bg_add);
+                window.location.href = currentURL;
+            }); 
+        }
+
     }
 
     // Modificar
