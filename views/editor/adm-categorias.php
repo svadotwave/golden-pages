@@ -1,15 +1,40 @@
 <h1>Administrar Categorias</h1>
 
 <script>
-    var alertasData = <?php echo $alertasJSON; ?>;
+    var alertasData = <?php echo $alertasModal; ?>;
 </script>
 
 <!-- btn - crear -->
 <div class="bg-agregar">
+
     <div id="btn-mod-addCategoria" class="btn-agregar">
         Nueva Categoria
     </div>
+    <!-- boton buscar --------------->
+    <form 
+        class="search" 
+        method="POST"
+        action="">
+        <label class="block h3-2" for="">
+            <input 
+                class="input-search" 
+                type="text"
+                name="nombre_categoria"
+                placeholder="Buscar categoria">
+        </label>
+
+        <input 
+            type="hidden" 
+            name="tipo" 
+            value="buscar">
+
+        <button class="btn-5" type="submit">
+            <i class='fa-solid fa-magnifying-glass'></i>
+        </button>
+    </form>
 </div>
+
+
 
 <?php include_once __DIR__ . '\modals\add-categoria.php'; ?>
 
@@ -50,7 +75,7 @@ if (!empty($categorias)) {
             <div class="table-body">
                 <div class="table-item">
                     <span class="h3-2">
-                        <?php echo $categoria->nombre_categoria ?>
+                        <?php echo $categoria["nombre_categoria"] ?>
                     </span>
                 </div>
             </div>
@@ -58,10 +83,12 @@ if (!empty($categorias)) {
                 <div class="table-item">
                     <span class="h3-2">
                         <?php
-                        if($categoria->estado_categoria === '1') {
-                            echo 'habilitado'; 
-                        } else {
-                            echo 'Inhabilitado';
+                        if($categoria["estado_categoria"] === '1') { ?>
+                            <i class="fa-regular fa-circle-check" style="color: #33D69F;"></i> habilitado
+                        <?php
+                        } else { ?>
+                            <i class="fa-regular fa-circle-xmark" style="color: #EC5757;"></i> Inhabilitado
+                        <?php
                         }
                         ?>
                     </span>
@@ -71,23 +98,23 @@ if (!empty($categorias)) {
             <!-- botones de la tabla -->
             <div class="btn-actions">
                 <div class="btn-modificar btn-mod-updCategoria"
-                    data-id="<?php echo $categoria->id_categoria; ?>" >
+                    data-id="<?php echo $categoria["id_categoria"]; ?>" >
                     Editar
                 </div>
 
                 <div class="modal-background" 
-                id="item-bg-updCategoria-<?php echo $categoria->id_categoria; ?>">
+                id="item-bg-updCategoria-<?php echo $categoria["id_categoria"]; ?>">
                 </div>
 
                 <!-- contenido del modal -->
                 <div class="modal-content" 
-                id="item-cont-updCategoria-<?php echo $categoria->id_categoria; ?>">
+                id="item-cont-updCategoria-<?php echo $categoria["id_categoria"]; ?>">
                 
                     <!-- formulario -->
                     <form 
                         class="from" 
                         method="POST"
-                        action="/adm-categorias">
+                        action="">
                         <fieldset>
                             <legend class="titulo">
                                 <h1>Editar Categoría</h1>
@@ -99,14 +126,15 @@ if (!empty($categorias)) {
                                     class="block p-t-5 input-text" 
                                     type="text"
                                     name="nombre_categoria"
-                                    value="<?php echo $categoria->nombre_categoria ?>"
+                                    value="<?php echo $categoria["nombre_categoria"]; ?>"
                                     placeholder="">
                             </label>
                             
                             <input 
                                 type="hidden" 
                                 name="id_categoria" 
-                                value="<?php echo $categoria->id_categoria ?>">
+                                value="<?php echo $categoria["id_categoria"]; ?>">
+
                             <input 
                                 type="hidden" 
                                 name="tipo" 
@@ -127,9 +155,9 @@ if (!empty($categorias)) {
 
 
                 <div class="btn-eliminar-full btn-mod-delCategoria m-izq-10"
-                    data-id="<?php echo $categoria->id_categoria; ?>" >
+                    data-id="<?php echo $categoria["id_categoria"]; ?>" >
                     <?php
-                    if($categoria->estado_categoria === '1') {
+                    if($categoria["estado_categoria"] === '1') {
                         echo 'Desactivar'; 
                     } else {
                         echo 'Activar';
@@ -138,23 +166,23 @@ if (!empty($categorias)) {
                 </div>
 
                 <div class="modal-background" 
-                id="item-bg-delCategoria-<?php echo $categoria->id_categoria; ?>" >
+                id="item-bg-delCategoria-<?php echo $categoria["id_categoria"]; ?>" >
                 </div>
 
                 <!-- contenido del modal -->
                 <div class="modal-content" 
-                id="item-cont-delCategoria-<?php echo $categoria->id_categoria; ?>" >
+                id="item-cont-delCategoria-<?php echo $categoria["id_categoria"]; ?>" >
 
                     <!-- formulario -->
                     <form 
                         class="from" 
                         method="POST"
-                        action="/adm-categorias">
+                        action="">
                         <fieldset>
                             <legend class="titulo">
                                 <h1>
                                 <?php
-                                if($categoria->estado_categoria === '1') {
+                                if($categoria["estado_categoria"] === '1') {
                                     echo 'Activar Categoria';
                                 } else {
                                     echo 'Desactivar Categoria';
@@ -165,10 +193,10 @@ if (!empty($categorias)) {
 
                             <label class="block h3-2 center" for="">
                             <?php
-                            if($categoria->estado_categoria === '1') {
-                                echo 'Activar la categoria: ' . $categoria->nombre_categoria; 
+                            if($categoria["estado_categoria"] === '1') {
+                                echo 'Seguro que desea Desactivar la categoria: ' . $categoria["nombre_categoria"] . '?'; 
                             } else {
-                                echo 'Seguro que desea Desactivar la categoria: ' . $categoria->nombre_categoria . '?'; 
+                                echo 'Activar la categoria: ' . $categoria["nombre_categoria"];
                             }
                             ?>
                             </label>
@@ -177,15 +205,10 @@ if (!empty($categorias)) {
                             <input 
                                 type="hidden" 
                                 name="id_categoria" 
-                                value="<?php echo $categoria->id_categoria ?>">
+                                value="<?php echo $categoria["id_categoria"]; ?>">
 
                             <input 
                                 type="hidden" 
-                                name="nombre_categoria" 
-                                value="<?php echo $categoria->nombre_categoria ?>">
-
-                            <input 
-                                type="hidden"
                                 name="tipo" 
                                 value="eliminar">
 
@@ -199,7 +222,7 @@ if (!empty($categorias)) {
                                 
                                 <div
                                     class="btn-eliminar m-t-18" 
-                                    id = "item-close-delCategoria-<?php echo $categoria->id_categoria; ?>" >
+                                    id = "item-close-delCategoria-<?php echo $categoria["id_categoria"]; ?>" >
                                     No
                                 </div>
                             </div>
@@ -217,7 +240,7 @@ if (!empty($categorias)) {
     } // fin - foreach
 } else { ?>
 
-    <h3 class="center">No se encontraron resultados. Agrega una nueva Categoria</h3>
+    <h3 class="center">No se encontraron resultados.</h3>
 <?php
 }
 ?>

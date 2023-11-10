@@ -48,6 +48,33 @@
     border-radius: 0.6rem;
 }
 
+.input-search {
+    font-family: 'League Spartan', sans-serif;
+    width: 240px;
+    height: 3.2rem;
+    font-style: normal;
+    font-display: swap;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 15px;
+    letter-spacing: -0.25;
+    padding-left: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 1.7rem;
+    border: 1px solid;
+    border-radius: 0.6rem;
+
+    &:filled {
+        border-radius: 0.6rem;
+        border-color: #9277FF;
+     }
+}
+
+.search {
+    display: flex;
+    align-items: baseline;
+}
+
 .m-b-18 {
     margin-bottom: 1.8rem;
 }

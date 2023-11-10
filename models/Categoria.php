@@ -21,6 +21,7 @@ class Categoria extends ActiveRecord {
         $this->estado_categoria = $args['nombre_usuario'] ?? '';
     }
 
+    // metodo existeCategoria()
     public function existeCategoria() {
         $query = "SELECT * FROM " . self::$tabla . " WHERE nombre_categoria = '" . $this->nombre_categoria . "' LIMIT 1";
 
@@ -29,6 +30,14 @@ class Categoria extends ActiveRecord {
         if($resultado->num_rows) {
             self::$alertas['error']['categoria'] = 'La Categoria ya está registrada';
         } 
+
+        return $resultado;
+    }
+
+    public function buscarCategoria() {
+        $query = "SELECT * FROM " . self::$tabla . " WHERE nombre_categoria LIKE'" . $this->nombre_categoria . "%' ";
+
+        $resultado = self::$db->query($query);
 
         return $resultado;
     }

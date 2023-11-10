@@ -39,8 +39,8 @@ $router->post('/recuperar-contraseña', [LoginController::class, 'recuperarContr
 // Editor
 $router->get('/dashboard-editor', [EditorController::class, 'view']);
 
-$router->get('/adm-categorias', [CategoriaController::class, 'gestionarCategoria']);
-$router->post('/adm-categorias', [CategoriaController::class, 'gestionarCategoria']);
+$router->get('/adm-categorias', [CategoriaController::class, 'vistaCategorias']);
+$router->post('/adm-categorias', [CategoriaController::class, 'vistaCategorias']);
 
 $router->get('/adm-libros', [EditorController::class, 'crearLibros']);
 $router->post('/adm-libros', [EditorController::class, 'crearLibros']);

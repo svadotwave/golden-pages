@@ -34,6 +34,35 @@
         );
 }
 
+.btn-5 {
+    padding-top: 1.5rem;
+    padding-bottom: 1.3rem;
+    padding-inline: 1.7rem;
+    border-radius: .6rem;
+    width: auto;
+    height: 4.0rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: var.$text-color-gray;
+    font-family: 'League Spartan', sans-serif;
+    font-style: normal;
+    font-display: swap;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.7;
+    letter-spacing: 0.15px;
+    word-spacing: 1.05px;
+    color: var.$text-color-white;
+    border: 1px solid var.$text-color-gray;
+
+    &:hover {
+        cursor: pointer;
+        background-color: var.$text-color-gray-hover;
+    }
+}
+
 .btn-s1 {
     @include mxs.btn-secondary(
         var.$color-1, 

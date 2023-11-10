@@ -1,18 +1,8 @@
 var currentURL = window.location.href;
 
-function mostrarModal(cont, bg) {
-    console.log('mostrar modal');
-    cont.style.display = "block";
-    bg.style.display = "block";
-}
-
-function ocultarModal(cont, bg) {
-    console.log('ocultar modal');
-    cont.style.display = "none";
-    bg.style.display = "none";
-}
-
 if (currentURL.includes("/adm-categorias")) {
+
+    console.log('aqui');
 
     // Modal para agregar
     var btn_add = document.getElementById("btn-mod-addCategoria"); // boton del modal
@@ -105,16 +95,4 @@ if (currentURL.includes("/adm-categorias")) {
         });
     });
 
-
-    
 }
-
-
-// var closeModalButton = document.getElementById("closeModal");
-
-// Cerrar modal al hacer clic en la "X" de cierre
-// closeModalButton.addEventListener("click", function() {
-//     modal.style.display = "none";
-//     modalBackground.style.display = "none";
-// });
-

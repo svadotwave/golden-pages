@@ -25,6 +25,12 @@
                     value=""
                     placeholder="categoria"
                     required>
+
+                <input
+                    type="hidden"
+                    name="tipo"
+                    value="agregar">
+
             </label>
 
             <?php
@@ -36,12 +42,6 @@
                         </label>
             <?php       } 
                     } ?>
-
-            <!-- button -->
-            <input 
-                type="hidden" 
-                name="tipo" 
-                value="crear">
 
             <input
                 class="btn-submit m-t-18 m-b-25" 

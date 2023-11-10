@@ -10,103 +10,155 @@ use MVC\Router;
 
 class CategoriaController {
 
-    public static function gestionarCategoria(Router $router) {
+    public static function vistaCategorias(Router $router) {
 
-        $categoria = new Categoria($_POST);
+
+        $categoria = new Categoria();
         $alertas = [];
-        $alertasJSON = json_encode($alertas);
+        $categorias = self::leerCategorias($categoria);
 
-        // Reader - Leer
-        $allCategorias = $categoria->all();
-
-        // POST
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            // Create - Crear
-            if($_POST['tipo'] === 'crear'){
-                $categoria->sincronizar($_POST);
+            if($_POST['tipo'] === 'agregar') {
 
-                $existe = $categoria->existeCategoria();
+                $addCategoria = self::addCategoria($categoria);
 
-                // Comparamos con el resultado obtenido de la BD
-                if($existe->num_rows) {
-                    // Esta registrado
-                    $alertas = Usuario::getAlertas();
-
-                    $alertasJSON = json_encode($alertas);
-
-                } else {
-                    // No esta registrado
-
-                    $categoria->estado_categoria = 1;
-                    $categoria->guardar($categoria->id_categoria);
-
-                    header('Location: /adm-categorias');
-                }
-
+                $alertas = $addCategoria['alertas'];
             }
 
-            // Update - Modificar
-            if($_POST['tipo'] === 'modificar'){
+            if($_POST['tipo'] === 'modificar') {
 
-                $categoria->sincronizar($_POST);
+                $updCategoria = self::updCategoria($categoria);
+
+                $alertas = $updCategoria['alertas'];
                 
-                $id_categoria = $_POST['id_categoria'];
-                $updCategoria = $categoria->find('id_categoria', $id_categoria);
-
-                if($updCategoria->nombre_categoria === $_POST['nombre_categoria']) {
-                    
-                    $updCategoria->actualizar($id_categoria);
-
-                    header('Location: /adm-categorias');
-
-                } else {
-
-                    $existe = $categoria->existeCategoria();
-
-                    if($existe->num_rows) {
-
-                        $alertas = Usuario::getAlertas();
-                        $alertasJSON = json_encode($alertas);
-
-                    } else {
-
-                        $updCategoria->nombre_categoria = $_POST['nombre_categoria'];
-                        $updCategoria->actualizar($id_categoria);
-
-                        header('Location: /adm-categorias');
-                    }
-                }
-                 
             }
 
-            // Delete - Eliminar
-            if($_POST['tipo'] === 'eliminar'){
+            if($_POST['tipo'] === 'eliminar') {
 
-                $id_categoria = $_POST['id_categoria'];
-                $updCategoria = $categoria->find('id_categoria', $id_categoria);
+                self::delCategoria($categoria);
                 
+            }
+
+            if($_POST['tipo'] === 'buscar') {
+
+                $nombre_categoria = $_POST['nombre_categoria'];
+
+                if($nombre_categoria != '') {
+
+                    $searchCategorias = self::searchCategoria($categoria);
+
+                    $categorias = $searchCategorias['categorias'];
+                }
+            }
+        }
+
+        $alertasModal = json_encode($alertas);
+
+        $router->render('editor/adm-categorias', [
+            'categorias'=> $categorias,
+            'alertas'=> $alertas,
+            'alertasModal'=> $alertasModal
+        ]);
+    }
+
+    public static function addCategoria(Categoria $categoria) {
+
+        $categoria->sincronizar($_POST);
+        $alertas = [];
+
+        $existe = $categoria->existeCategoria();
+
+        // Comparamos con el resultado obtenido de la BD
+        if ($existe->num_rows) {
+            // Esta registrado
+            $alertas = Usuario::getAlertas();
+            
+        } else {
+            // No esta registrado
+            $categoria->estado_categoria = 1;
+            $categoria->guardar($categoria->id_categoria);
+
+            header('Location: /adm-categorias');
+        }
+
+        return ['alertas' => $alertas];
+        
+    }
+
+    public static function updCategoria(Categoria $categoria) {
+
+        $categoria->sincronizar($_POST);
+        $alertas = [];
+                
+        $id_categoria = $_POST['id_categoria'];
+        $updCategoria = $categoria->find('id_categoria', $id_categoria);
+
+        if($updCategoria->nombre_categoria === $_POST['nombre_categoria']) {
+            
+            $updCategoria->actualizar($id_categoria);
+            
+            header('Location: /adm-categorias');
+
+        } else {
+
+            $existe = $categoria->existeCategoria();
+
+            if($existe->num_rows) {
+
+                $alertas = Usuario::getAlertas();
+
+            } else {
+
                 $updCategoria->nombre_categoria = $_POST['nombre_categoria'];
-
-                if($updCategoria->estado_categoria === '1') {
-                    $updCategoria->estado_categoria = 0;
-                } else {
-                    $updCategoria->estado_categoria = 1;
-                }
-
                 $updCategoria->actualizar($id_categoria);
 
                 header('Location: /adm-categorias');
             }
-                    
         }
 
-        $alertas = Usuario::getAlertas();
+        return ['alertas' => $alertas];
+    
+    }
 
-        $router->render('editor/adm-categorias', [
-            'categorias' => $allCategorias,
-            'alertas' => $alertas,
-            'alertasJSON' => $alertasJSON
-        ]);
+    public static function delCategoria(Categoria $categoria) {
+
+        $categoria->sincronizar($_POST);
+
+        $id_categoria = $_POST['id_categoria'];
+        $delCategoria = $categoria->find('id_categoria', $id_categoria);
+
+        if($delCategoria->estado_categoria === '1') {
+            $delCategoria->estado_categoria = 0;
+        } else {
+            $delCategoria->estado_categoria = 1;
+        }
+
+        $delCategoria->actualizar($id_categoria);
+
+        header('Location: /adm-categorias');
+        
+    }
+
+    public static function searchCategoria(Categoria $categoria) {
+
+        $categoria->sincronizar($_POST);
+        $searchCategoria = $categoria->buscarCategoria();
+        $categorias = $searchCategoria->fetch_all(MYSQLI_ASSOC);
+
+        return ['categorias' => $categorias]; 
+    }
+
+    private static function leerCategorias(Categoria $categoria) {
+        $allCategorias = $categoria->all();
+    
+        foreach ($allCategorias as $cat) {
+            if (is_object($cat)) {
+                $arrayCategoria = get_object_vars($cat);
+                $categorias[] = $arrayCategoria;
+            }
+        }
+    
+        return $categorias;
     }
 }
