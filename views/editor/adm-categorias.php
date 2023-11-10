@@ -1,48 +1,44 @@
 <h1>Administrar Categorias</h1>
 
+<script>
+    var alertasData = <?php echo $alertasModal; ?>;
+</script>
+
+<!-- btn - crear -->
 <div class="bg-agregar">
-    <div id="btn-mod-cCategoria" class="btn-agregar">
+
+    <div id="btn-mod-addCategoria" class="btn-agregar">
         Nueva Categoria
     </div>
-</div>
-
-<!-- Modal de crear -->
-<div class="modal-background" id="bg-mod-cCategoria"></div>
-<div class="modal-content" id="cont-mod-cCategoria">
-    <div class="dentro-modal">
-        <!-- formulario -->
+    <!-- boton buscar --------------->
     <form 
-        class="from" 
+        class="search" 
         method="POST"
-        action="/adm-categorias">
-        <fieldset>
-            <legend class="titulo">
-                <h1>Crear Categoría</h1>
-            </legend>
+        action="">
+        <label class="block h3-2" for="">
+            <input 
+                class="input-search" 
+                type="text"
+                name="nombre_categoria"
+                placeholder="Buscar categoria">
+        </label>
 
-            <label class="block h3-2" for="">
-                NOMBRE*
-                <input 
-                    class="block p-t-5 input-text" 
-                    type="text"
-                    name="nombre_categoria"
-                    value=""
-                    placeholder="categoria">
-            </label>
+        <input 
+            type="hidden" 
+            name="tipo" 
+            value="buscar">
 
-            <!-- button -->
-            <input
-                class="btn-submit m-t-18 m-b-25" 
-                type="submit" 
-                value="CREAR" 
-                readonly
-            >
-
-        </fieldset>
+        <button class="btn-5" type="submit">
+            <i class='fa-solid fa-magnifying-glass'></i>
+        </button>
     </form>
-    </div>
 </div>
 
+
+
+<?php include_once __DIR__ . '\modals\add-categoria.php'; ?>
+
+<!-- tabla principal -->
 <div class="bg-table">
     <div class="table">
         <div class="nro">
@@ -53,13 +49,18 @@
                 <span class="h3-2">Nombre</span>
             </div>
         </div>
+        <div class="table-body">
+            <div class="table-item">
+                <span class="h3-2">Estado</span>
+            </div>
+        </div>
         <div class="btn-actions">
-            <!-- name buttons -->
+            <!-- TODO - name buttons -->
         </div>
     </div>
 </div>
 
-
+<!-- cuerpo de la tabla -->
 <?php
 if (!empty($categorias)) {
     $contador = 1;
@@ -74,35 +75,46 @@ if (!empty($categorias)) {
             <div class="table-body">
                 <div class="table-item">
                     <span class="h3-2">
-                        <?php echo $categoria->nombre_categoria ?>
+                        <?php echo $categoria["nombre_categoria"] ?>
+                    </span>
+                </div>
+            </div>
+            <div class="table-body">
+                <div class="table-item">
+                    <span class="h3-2">
+                        <?php
+                        if($categoria["estado_categoria"] === '1') { ?>
+                            <i class="fa-regular fa-circle-check" style="color: #33D69F;"></i> habilitado
+                        <?php
+                        } else { ?>
+                            <i class="fa-regular fa-circle-xmark" style="color: #EC5757;"></i> Inhabilitado
+                        <?php
+                        }
+                        ?>
                     </span>
                 </div>
             </div>
 
-            <!-- acciones de botones -->
+            <!-- botones de la tabla -->
             <div class="btn-actions">
-                <!-- === EDITAR === -->
-                <div
-                    class="btn-modificar btn-mod-mCategoria"
-                    data-id="<?php echo $categoria->id_categoria; ?>" >
+                <div class="btn-modificar btn-mod-updCategoria"
+                    data-id="<?php echo $categoria["id_categoria"]; ?>" >
                     Editar
                 </div>
-                <!-- Modal de Editar -->
-                <div 
-                class="modal-background" 
-                id="bg-mod-mCategoria-<?php echo $categoria->id_categoria; ?>">
-                </div>
-                <!-- contenido del modal -->
-                <div 
-                class="modal-content" 
-                id="cont-mod-mCategoria-<?php echo $categoria->id_categoria; ?>">
 
-                    <div class="dentro-modal">
+                <div class="modal-background" 
+                id="item-bg-updCategoria-<?php echo $categoria["id_categoria"]; ?>">
+                </div>
+
+                <!-- contenido del modal -->
+                <div class="modal-content" 
+                id="item-cont-updCategoria-<?php echo $categoria["id_categoria"]; ?>">
+                
                     <!-- formulario -->
                     <form 
                         class="from" 
                         method="POST"
-                        action="/adm-categorias">
+                        action="">
                         <fieldset>
                             <legend class="titulo">
                                 <h1>Editar Categoría</h1>
@@ -114,14 +126,15 @@ if (!empty($categorias)) {
                                     class="block p-t-5 input-text" 
                                     type="text"
                                     name="nombre_categoria"
-                                    value="<?php echo $categoria->nombre_categoria ?>"
+                                    value="<?php echo $categoria["nombre_categoria"]; ?>"
                                     placeholder="">
                             </label>
                             
                             <input 
                                 type="hidden" 
                                 name="id_categoria" 
-                                value="<?php echo $categoria->id_categoria ?>">
+                                value="<?php echo $categoria["id_categoria"]; ?>">
+
                             <input 
                                 type="hidden" 
                                 name="tipo" 
@@ -136,45 +149,64 @@ if (!empty($categorias)) {
 
                         </fieldset>
                     </form>
-                    </div>
-                </div>
-                <!-- === ELIMINAR === -->
-                <div
-                class="btn-eliminar btn-mod-eCategoria m-izq-10"
-                data-id="<?php echo $categoria->id_categoria; ?>" >
-                    Eliminar
-                </div>
-                <!-- Modal de Eliminar -->
-                <div 
-                class="modal-background" 
-                id="bg-mod-eCategoria-<?php echo $categoria->id_categoria; ?>" >
-                </div>
-                <!-- contenido del modal -->
-                <div 
-                class="modal-content" 
-                id="cont-mod-eCategoria-<?php echo $categoria->id_categoria; ?>" >
 
-                    <div class="dentro-modal">
+                </div>
+
+
+
+                <div class="btn-eliminar-full btn-mod-delCategoria m-izq-10"
+                    data-id="<?php echo $categoria["id_categoria"]; ?>" >
+                    <?php
+                    if($categoria["estado_categoria"] === '1') {
+                        echo 'Desactivar'; 
+                    } else {
+                        echo 'Activar';
+                    }
+                    ?>
+                </div>
+
+                <div class="modal-background" 
+                id="item-bg-delCategoria-<?php echo $categoria["id_categoria"]; ?>" >
+                </div>
+
+                <!-- contenido del modal -->
+                <div class="modal-content" 
+                id="item-cont-delCategoria-<?php echo $categoria["id_categoria"]; ?>" >
+
                     <!-- formulario -->
                     <form 
                         class="from" 
                         method="POST"
-                        action="/adm-categorias">
+                        action="">
                         <fieldset>
                             <legend class="titulo">
-                                <h1>Eliminar Categoría</h1>
+                                <h1>
+                                <?php
+                                if($categoria["estado_categoria"] === '1') {
+                                    echo 'Activar Categoria';
+                                } else {
+                                    echo 'Desactivar Categoria';
+                                }
+                                ?>
+                                </h1>
                             </legend>
 
-                            <label class="block h3-2" for="">
-                                Seguro que desea eliminar la categoria: "
-                                <?php echo $categoria->nombre_categoria ?>" ?
+                            <label class="block h3-2 center" for="">
+                            <?php
+                            if($categoria["estado_categoria"] === '1') {
+                                echo 'Seguro que desea Desactivar la categoria: ' . $categoria["nombre_categoria"] . '?'; 
+                            } else {
+                                echo 'Activar la categoria: ' . $categoria["nombre_categoria"];
+                            }
+                            ?>
                             </label>
                             <hr class="linea">
                             
                             <input 
                                 type="hidden" 
                                 name="id_categoria" 
-                                value="<?php echo $categoria->id_categoria ?>">
+                                value="<?php echo $categoria["id_categoria"]; ?>">
+
                             <input 
                                 type="hidden" 
                                 name="tipo" 
@@ -190,23 +222,25 @@ if (!empty($categorias)) {
                                 
                                 <div
                                     class="btn-eliminar m-t-18" 
-                                    id = "close-eCategoria-<?php echo $categoria->id_categoria; ?>" >
+                                    id = "item-close-delCategoria-<?php echo $categoria["id_categoria"]; ?>" >
                                     No
                                 </div>
                             </div>
                         </fieldset>
                     </form>
-                    </div>
+                    
                 </div>
+
+
             </div>
         </div>
 
     <?php
     $contador++;
-    }
+    } // fin - foreach
 } else { ?>
 
-    <h3 class="center">No se encontraron resultados. Agrega una nueva Categoria</h3>
+    <h3 class="center">No se encontraron resultados.</h3>
 <?php
 }
 ?>

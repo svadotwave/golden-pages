@@ -2,86 +2,97 @@ var currentURL = window.location.href;
 
 if (currentURL.includes("/adm-categorias")) {
 
+    console.log('aqui');
+
     // Modal para agregar
-    var btn_mod_cCategoria = document.getElementById("btn-mod-cCategoria"); // boton del modal
-    var cont_mod_cCategoria = document.getElementById("cont-mod-cCategoria"); // Contenido del modal
-    var bg_mod_cCategoria = document.getElementById("bg-mod-cCategoria"); // fondo del modal
-    // var closeModalButton = document.getElementById("closeModal");
-
-    // Abrir modal al hacer clic en el botón
-    btn_mod_cCategoria.addEventListener("click", function() {
-        cont_mod_cCategoria.style.display = "block";
-        bg_mod_cCategoria.style.display = "block";
-    });
-
-    // Cerrar modal al hacer clic en la "X" de cierre
-    // closeModalButton.addEventListener("click", function() {
-    //     modal.style.display = "none";
-    //     modalBackground.style.display = "none";
-    // });
-
-    // Cerrar modal al hacer clic en el fondo oscuro
-    bg_mod_cCategoria.addEventListener("click", function() {
-        cont_mod_cCategoria.style.display = "none";
-        bg_mod_cCategoria.style.display = "none";
-    });
+    var btn_add = document.getElementById("btn-mod-addCategoria"); // boton del modal
+    var cont_add = document.getElementById("cont-mod-addCategoria"); // Contenido del modal
+    var bg_add = document.getElementById("bg-mod-addCategoria"); // fondo del modal
 
     // Modificar
-    document.addEventListener("DOMContentLoaded", function() {
-        var btn_mod_mCategoria = document.querySelectorAll(".btn-mod-mCategoria");
+    var btn_upd = '.btn-mod-updCategoria';
+    var cont_upd_item = 'item-cont-updCategoria-';
+    var bg_upd_item = 'item-bg-updCategoria-';
 
-        btn_mod_mCategoria.forEach(function(button) {
-            button.addEventListener("click", function() {
+    // Eliminar
+    var btn_del = '.btn-mod-delCategoria';
+    var cont_del_item = 'item-cont-delCategoria-';
+    var bg_del_item = 'item-bg-delCategoria-';
+    var close_del_item = 'item-close-delCategoria-';
 
-                var id_categoria = button.getAttribute("data-id");
+    // Modal - Agregar
+    if (alertasData.length === 0) {
 
-                var modal = document.getElementById("cont-mod-mCategoria-" + id_categoria);
-                var modalBackground = document.getElementById("bg-mod-mCategoria-" + id_categoria);
+        btn_add.addEventListener("click", () =>
+            mostrarModal(cont_add, bg_add));
 
-                modal.style.display = "block";
-                modalBackground.style.display = "block";
+        // Cerrar modal al hacer clic en el fondo oscuro
+        bg_add.addEventListener("click", () =>
+            ocultarModal(cont_add, bg_add));
+
+    } else {
+
+        console.log('array con contenido');
+
+        // Realiza otras acciones si no hay errores
+        mostrarModal(cont_add, bg_add)
+
+        // Cerrar modal al hacer clic en el fondo oscuro
+        bg_add.addEventListener("click", () => {
+            ocultarModal(cont_add, bg_add);
+            window.location.href = currentURL;
+        });   
+    }
+
+    // Modificar
+    document.addEventListener("DOMContentLoaded", () => {
+        var btn_upd_elem = document.querySelectorAll(btn_upd);
+        
+
+        btn_upd_elem.forEach(function(button) {
+            button.addEventListener("click", () => {
+
+                var id = button.getAttribute("data-id");
+
+                var cont_upd = document.getElementById(cont_upd_item + id);
+                var bg_upd = document.getElementById(bg_upd_item + id);
+
+                mostrarModal(cont_upd, bg_upd);
 
                 // Cerrar Modal al hacer clic en el fondo oscuro
-                modalBackground.addEventListener("click", function() {
-                    modal.style.display = "none";
-                    modalBackground.style.display = "none";
+                bg_upd.addEventListener("click", () => {
+                    ocultarModal(cont_upd, bg_upd);
                 });
             });
         });
     });
 
     // Eliminar
-    document.addEventListener("DOMContentLoaded", function() {
-        var btn_mod_eCategoria = document.querySelectorAll(".btn-mod-eCategoria");
+    document.addEventListener("DOMContentLoaded", () => {
+        var btn_del_elem = document.querySelectorAll(btn_del);
 
-        btn_mod_eCategoria.forEach(function(button) {
-            button.addEventListener("click", function() {
+        btn_del_elem.forEach(function(button) {
+            button.addEventListener("click", () => {
 
-                var id_categoria = button.getAttribute("data-id");
+                var id = button.getAttribute("data-id");
 
-                var modal = document.getElementById("cont-mod-eCategoria-" + id_categoria);
-                var modalBackground = document.getElementById("bg-mod-eCategoria-" + id_categoria);
-                var closeModalButton = document.getElementById("close-eCategoria-" + id_categoria);
+                var cont_del= document.getElementById(cont_del_item + id);
+                var bg_del = document.getElementById(bg_del_item + id);
+                var close = document.getElementById(close_del_item + id);
 
-                modal.style.display = "block";
-                modalBackground.style.display = "block";
+                mostrarModal(cont_del, bg_del);
 
                 // Cerrar Modal al hacer clic en el fondo oscuro
-                modalBackground.addEventListener("click", function() {
-                    modal.style.display = "none";
-                    modalBackground.style.display = "none";
+                bg_del.addEventListener("click", () => {
+                    ocultarModal(cont_del, bg_del);
                 });
 
                 // Cerrar modal al hacer clic en la "X" de cierre
-                closeModalButton.addEventListener("click", function() {
-                modal.style.display = "none";
-                modalBackground.style.display = "none";
+                close.addEventListener("click", () => {
+                    ocultarModal(cont_del, bg_del);
                 });
             });
         });
     });
 
-
-    
 }
-
