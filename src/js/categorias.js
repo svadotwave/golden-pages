@@ -26,10 +26,12 @@ if (currentURL.includes("/adm-categorias")) {
 
     if (ban_js) {
       console.log("entra a ban");
-      element.classList.remove("show-alert");
       setTimeout(() => {
-        element.classList.add("show-alert");
-      }, 2000);
+        element.classList.remove("show-alert");
+        setTimeout(() => {
+          element.classList.add("show-alert");
+        }, 2000);
+      }, 250);
     }
 
     btn_add.addEventListener("click", () => mostrarModal(cont_add, bg_add));
