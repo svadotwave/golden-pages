@@ -3,8 +3,14 @@
 <script>
     var alertasData = <?php echo $alertasModal; ?>;
     var tipoAlertaData = <?php echo $tipoAlertaModal; ?>;
-    var idmodificarModal = <?php echo $idmodificarModal; ?>;  
+    var idmodificarModal = <?php echo $idmodificarModal; ?>;
+    var ban_js = <?php echo $banJS; ?>;  
 </script>
+
+<div class="alertaMensaje" id="ban">
+    Mensaje de Alerta
+</div>
+
 
 <!-- btn - crear -->
 <div class="bg-agregar">
@@ -154,7 +160,7 @@ if (!empty($categorias)) {
 
                             <!-- button -->
                             <input
-                                class="btn-submit m-t-18 m-b-25" 
+                                class="btn-submit m-t-18 m-b-8" 
                                 type="submit" 
                                 value="MODIFICAR" 
                                 readonly>
@@ -195,9 +201,9 @@ if (!empty($categorias)) {
                                 <h1>
                                 <?php
                                 if($categoria["estado_categoria"] === '1') {
-                                    echo 'Activar Categoria';
-                                } else {
                                     echo 'Desactivar Categoria';
+                                } else {
+                                    echo 'Activar Categoria';
                                 }
                                 ?>
                                 </h1>
@@ -205,10 +211,14 @@ if (!empty($categorias)) {
 
                             <label class="block h3-2 center" for="">
                             <?php
-                            if($categoria["estado_categoria"] === '1') {
-                                echo 'Seguro que desea Desactivar la categoria: ' . $categoria["nombre_categoria"] . '?'; 
-                            } else {
-                                echo 'Activar la categoria: ' . $categoria["nombre_categoria"];
+                            if($categoria["estado_categoria"] === '1') { ?>
+                                <div>Seguro que desea desactivar la categoria:</div>
+                                <div class="m-t-18"><?php echo $categoria["nombre_categoria"]. '?'; ?></div>
+                                <?php
+                            } else { ?>
+                                <!-- <div>Activar la categoria:</div> -->
+                                <div><?php echo $categoria["nombre_categoria"]; ?></div>
+                            <?php    
                             }
                             ?>
                             </label>
@@ -227,13 +237,13 @@ if (!empty($categorias)) {
                             <!-- button -->
                             <div class="botones-modal">
                                 <input
-                                    class="btn-modificar m-t-18" 
+                                    class="btn-modificar" 
                                     type="submit" 
                                     value="Si" 
                                     readonly>
                                 
                                 <div
-                                    class="btn-eliminar m-t-18" 
+                                    class="btn-eliminar" 
                                     id = "item-close-delCategoria-<?php echo $categoria["id_categoria"]; ?>" >
                                     No
                                 </div>

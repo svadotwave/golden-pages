@@ -44,7 +44,7 @@
                     } ?>
 
             <input
-                class="btn-submit m-t-18 m-b-25" 
+                class="btn-submit m-t-18 m-b-8" 
                 type="submit" 
                 value="CREAR" 
                 readonly

@@ -1,8 +1,8 @@
 var currentURL = window.location.href;
 
-if (currentURL.includes("/adm-categorias")) {
+if (currentURL.includes("/adm-categorias")) { 
 
-    console.log('aqui');
+    const element = document.getElementById("ban");
 
     // Modal para agregar
     var btn_add = document.getElementById("btn-mod-addCategoria"); // boton del modal
@@ -20,10 +20,19 @@ if (currentURL.includes("/adm-categorias")) {
     var bg_del_item = 'item-bg-delCategoria-';
     var close_del_item = 'item-close-delCategoria-';
 
-    // Modal - Agregar
-    if (alertasData.length === 0) {
 
-        console.log('alertas SIN contenido');
+    // Modal - Agregar
+
+    if (alertasData.length === 0) {   
+        
+        console.log('alertas sin contenido ->');
+
+        if (ban_js) {
+            console.log('entra a ban');
+            element.style.display = "block"
+            setTimeout( () => { 
+                element.style.display = "none" }, 1000 );
+        }
 
         btn_add.addEventListener("click", () =>
             mostrarModal(cont_add, bg_add));
@@ -34,7 +43,7 @@ if (currentURL.includes("/adm-categorias")) {
 
     } else {
 
-        console.log('alertas con contenido ->' + alertasData);
+        console.log('alertas con contenido');
 
         if(tipoAlertaData === 'modificar') {
             var cont_upd = document.getElementById(cont_upd_item + idmodificarModal);
@@ -60,6 +69,8 @@ if (currentURL.includes("/adm-categorias")) {
         }
 
     }
+
+
 
     // Modificar
     document.addEventListener("DOMContentLoaded", () => {
