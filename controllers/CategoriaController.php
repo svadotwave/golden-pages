@@ -96,7 +96,7 @@ class CategoriaController {
         } else {
             // No esta registrado
             $categoria->estado_categoria = 1;
-            // $categoria->guardar($categoria->id_categoria);
+            $categoria->guardar($categoria->id_categoria);
 
             $ban = true;
 
