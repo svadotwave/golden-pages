@@ -4,6 +4,8 @@ namespace Controllers;
 
 use MVC\Router;
 use Models\Libro;
+use Models\Autor;
+use Models\Usuario;
 
 class UsuarioController {
 
@@ -11,7 +13,10 @@ class UsuarioController {
 
         $pagina = 'dashboard-usuario';
         $libro = new Libro();
-        $allLibros = $libro->all();
+        $autor = new Autor();
+        $usuario = new Usuario();
+        $libros = self::leerItems($libro);
+
 
         // debuguear($_SESSION['autor']);
 
@@ -27,7 +32,23 @@ class UsuarioController {
         }
         
         $router->render("dashboard/" . $pagina, [
-            'libros' => $allLibros
+            'libros' => $libros,
+            'usuario' => $usuario,
+            'autor' => $autor
         ]);
     }
+
+    private static function leerItems(Libro $elemt) {
+        $elementos = $elemt->all();
+    
+        foreach ($elementos as $e) {
+            if (is_object($e)) {
+                $item = get_object_vars($e);
+                $array[] = $item;
+            }
+        }
+    
+        return $array;
+    }
+
 }

@@ -9,6 +9,7 @@ use Controllers\UsuarioController;
 use Controllers\EditorController;
 use Controllers\CategoriaController;
 use Controllers\AutorController;
+use Controllers\CompraController;
 
 $router = new Router();
 
@@ -45,12 +46,16 @@ $router->post('/adm-categorias', [CategoriaController::class, 'vistaCategorias']
 $router->get('/adm-libros', [EditorController::class, 'crearLibros']);
 $router->post('/adm-libros', [EditorController::class, 'crearLibros']);
 
-$router->get('/adm-autores', [EditorController::class, 'crearAutores']);
-$router->post('/adm-autores', [EditorController::class, 'crearAutores']);
+$router->get('/adm-autores', [AutorController::class, 'vistaAutores']);
+$router->post('/adm-autores', [AutorController::class, 'vistaAutores']);
 
 //Autor
 $router->get('/autor', [AutorController::class, 'crearAutor']);
 $router->post('/autor', [AutorController::class, 'crearAutor']);
+
+//Autor
+$router->get('/biblioteca', [CompraController::class, 'verLibros']);
+$router->post('/biblioteca', [CompraController::class, 'verLibros']);
 
 
 // Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador

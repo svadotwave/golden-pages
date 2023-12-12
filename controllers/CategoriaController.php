@@ -3,9 +3,7 @@
 namespace Controllers;
 
 use Models\Categoria;
-use Models\Libro;
 use Models\Usuario;
-use Models\Autor;
 use MVC\Router;
 
 class CategoriaController {
@@ -87,11 +85,12 @@ class CategoriaController {
         $ban = false;
 
         $existe = $categoria->existeCategoria();
-
+        
         // Comparamos con el resultado obtenido de la BD
         if ($existe->num_rows) {
             // Esta registrado
-            $alertas = Usuario::getAlertas();
+            $alertas = Categoria::getAlertas();
+            
             
         } else {
             // No esta registrado

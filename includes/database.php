@@ -1,6 +1,6 @@
 <?php
 
-$db = mysqli_connect('localhost', 'root', '', 'db_golden_pages');
+$db = mysqli_connect('localhost', 'root', 'gobd1255', 'db_golden_pages');
 
 
 if (!$db) {

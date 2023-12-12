@@ -16,13 +16,15 @@
 </div>
 
 
-<!-- btn - crear -->
+<!-- Contenedor -->
 <div class="bg-agregar">
 
+    <!-- boton add --------------->
     <div id="btn-mod-addCategoria" class="btn-agregar">
         Nueva Categoria
     </div>
-    <!-- boton buscar --------------->
+
+    <!-- boton search --------------->
     <form class="search" method="POST" action="">
         <label class="block h3-2" for="">
             <input class="input-search" type="text" name="nombre_categoria" placeholder="Buscar categoria">
@@ -35,8 +37,6 @@
         </button>
     </form>
 </div>
-
-
 
 <?php include_once __DIR__ . '\modals\add-categoria.php'; ?>
 
