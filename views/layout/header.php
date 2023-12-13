@@ -84,6 +84,12 @@
 
                         <div class="item_menu_top">
 
+                            <div class="btn-1">
+                                    <a href="/biblioteca">
+                                        Mi Biblioteca
+                                    </a>
+                                </div>
+
                             <?php
                             if($_SESSION['autor']) { ?>
 
@@ -96,7 +102,7 @@
                             <?php 
                             } else {
                             ?>
-                                <div class="">
+                                <div class="m-izq-10">
                                     <div class="block-inline">
                                         <div id="btn-mod-cAutor" class="btn-modificar">
                                             Ser Autor

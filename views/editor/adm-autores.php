@@ -7,56 +7,7 @@
 </div>
 
 <!-- Modal de crear -->
-<div class="modal-background" id="bg-mod-cEdAu"></div>
-<div class="modal-content" id="cont-mod-cEdAu">
-    <div class="dentro-modal">
-        <!-- formulario -->
-    <form 
-        class="from" 
-        method="POST"
-        action="/adm-autores">
-        <fieldset>
-            <legend class="titulo">
-                <h1>Crear Autor</h1>
-            </legend>
-
-            <label class="block h3-2" for="">
-                NOMBRE*
-                <input 
-                    class="block p-t-5 input-text" 
-                    type="text"
-                    name="nombre_usuario"
-                    value=""
-                    placeholder="nombre">
-            </label>
-
-            <label class="block h3-2 m-t-18" for="">
-                APELLIDO*
-                <input 
-                    class="block p-t-5 input-text" 
-                    type="text"
-                    name="apellido_usuario"
-                    value=""
-                    placeholder="apellido">
-            </label>
-
-            <input 
-                type="hidden" 
-                name="tipo" 
-                value="crear">
-
-            <!-- button -->
-            <input
-                class="btn-submit m-t-18 m-b-25" 
-                type="submit" 
-                value="CREAR" 
-                readonly
-            >
-
-        </fieldset>
-    </form>
-    </div>
-</div>
+<?php include_once __DIR__ . '\modals\add-autor.php'; ?>
 
 
 <div class="bg-table">
@@ -93,12 +44,12 @@ if (!empty($autores)) {
                 
                 <div class="table-item">
                     <span class="h3-2">
-                        <?php echo $usuario->find('id_usuario', $autor->id_usuario)->nombre_usuario ?>
+                        <?php echo $usuario->find('id_usuario', $autor['id_usuario'])->nombre_usuario; ?>
                     </span>
                 </div>
                 <div class="table-item">
                     <span class="h3-2">
-                        <?php echo $usuario->find('id_usuario', $autor->id_usuario)->apellido_usuario ?>
+                        <?php echo $usuario->find('id_usuario', $autor['id_usuario'])->apellido_usuario; ?>
                     </span>
                 </div>
             </div>
@@ -107,25 +58,25 @@ if (!empty($autores)) {
                 <!-- === EDITAR === -->
                 <div
                     class="btn-modificar btn-mod-mEdAu"
-                    data-id="<?php echo $autor->id_autor; ?>" >
+                    data-id="<?php echo $autor['id_usuario']; ?>" >
                     Editar
                 </div>
                 <!-- Modal de Editar -->
                 <div 
                 class="modal-background" 
-                id="bg-mod-mEdAu-<?php echo $autor->id_autor; ?>">
+                id="bg-mod-mEdAu-<?php echo $autor['id_usuario']; ?>">
                 </div>
                 <!-- contenido del modal -->
                 <div 
                 class="modal-content" 
-                id="cont-mod-mEdAu-<?php echo $autor->id_autor; ?>">
+                id="cont-mod-mEdAu-<?php echo $autor['id_usuario']; ?>">
 
                     <div class="dentro-modal">
                     <!-- formulario -->
                     <form 
                         class="from" 
                         method="POST"
-                        action="/adm-categorias">
+                        action="">
                         <fieldset>
                             <legend class="titulo">
                                 <h1>Editar Categoría</h1>
@@ -136,15 +87,25 @@ if (!empty($autores)) {
                                 <input 
                                     class="block p-t-5 input-text" 
                                     type="text"
-                                    name="nombre_categoria"
-                                    value="<?php echo $categoria->nombre_categoria ?>"
+                                    name="nombre_usuario"
+                                    value="<?php echo $usuario->find('id_usuario', $autor['id_usuario'])->nombre_usuario; ?>"
+                                    placeholder="">
+                            </label>
+
+                            <label class="block h3-2 m-t-18" for="">
+                                APELLIDO*
+                                <input 
+                                    class="block p-t-5 input-text" 
+                                    type="text"
+                                    name="apellido_usuario"
+                                    value="<?php echo $usuario->find('id_usuario', $autor['id_usuario'])->apellido_usuario; ?>"
                                     placeholder="">
                             </label>
                             
                             <input 
                                 type="hidden" 
-                                name="id_autor" 
-                                value="<?php echo $categoria->id_categoria ?>">
+                                name="id_usuario" 
+                                value="<?php echo $autor['id_usuario'] ?>">
                             <input 
                                 type="hidden" 
                                 name="tipo" 
@@ -164,18 +125,18 @@ if (!empty($autores)) {
                 <!-- === ELIMINAR === -->
                 <div
                 class="btn-eliminar btn-mod-eEdAu m-izq-10"
-                data-id="<?php echo $autor->id_autor; ?>" >
+                data-id="<?php echo $autor['id_usuario']; ?>" >
                     Eliminar
                 </div>
                 <!-- Modal de Eliminar -->
                 <div 
                 class="modal-background" 
-                id="bg-mod-eEdAu-<?php echo $autor->id_autor; ?>" >
+                id="bg-mod-eEdAu-<?php echo $autor['id_usuario']; ?>" >
                 </div>
                 <!-- contenido del modal -->
                 <div 
                 class="modal-content" 
-                id="cont-mod-eEdAu-<?php echo $autor->id_autor; ?>" >
+                id="cont-mod-eEdAu-<?php echo $autor['id_usuario']; ?>" >
 
                     <div class="dentro-modal">
                     <!-- formulario -->
@@ -191,8 +152,8 @@ if (!empty($autores)) {
                             <label class="block h3-2" for="">
                                 Seguro que desea eliminar el autor: "
                                 <?php echo
-                                    $usuario->find('id_usuario', $autor->id_usuario)->nombre_usuario . " " .
-                                    $usuario->find('id_usuario', $autor->id_usuario)->apellido_usuario;
+                                    $usuario->find('id_usuario', $autor['id_usuario'])->nombre_usuario . " " .
+                                    $usuario->find('id_usuario', $autor['id_usuario'])->apellido_usuario;
                                 ?>" ?
                             </label>
                             <hr class="linea">
@@ -200,7 +161,7 @@ if (!empty($autores)) {
                             <input 
                                 type="hidden" 
                                 name="id_autor" 
-                                value="<?php echo $autor->id_autor; ?>">
+                                value="<?php echo $autor['id_usuario']; ?>">
                             <input 
                                 type="hidden" 
                                 name="tipo" 
@@ -216,7 +177,7 @@ if (!empty($autores)) {
                                 
                                 <div
                                     class="btn-eliminar m-t-18" 
-                                    id = "close-eEdAu-<?php echo $autor->id_autor; ?>" >
+                                    id = "close-eEdAu-<?php echo $autor['id_usuario']; ?>" >
                                     No
                                 </div>
                             </div>

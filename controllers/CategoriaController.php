@@ -3,9 +3,7 @@
 namespace Controllers;
 
 use Models\Categoria;
-use Models\Libro;
 use Models\Usuario;
-use Models\Autor;
 use MVC\Router;
 
 class CategoriaController {
@@ -15,6 +13,9 @@ class CategoriaController {
 
         $categoria = new Categoria();
         $alertas = [];
+        $tipoAlerta = '';
+        $id_modificar = '';
+        $ban = false;
         $categorias = self::leerCategorias($categoria);
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -23,14 +24,23 @@ class CategoriaController {
 
                 $addCategoria = self::addCategoria($categoria);
 
-                $alertas = $addCategoria['alertas'];
+                if($addCategoria['alertas']) {
+                    $alertas = $addCategoria['alertas'];
+                }
+                $tipoAlerta = 'agregar';
+                $ban = $addCategoria;
             }
 
             if($_POST['tipo'] === 'modificar') {
 
                 $updCategoria = self::updCategoria($categoria);
 
+
                 $alertas = $updCategoria['alertas'];
+
+                
+                $tipoAlerta = 'modificar';
+                $id_modificar = $_POST['id_categoria'];
                 
             }
 
@@ -54,11 +64,17 @@ class CategoriaController {
         }
 
         $alertasModal = json_encode($alertas);
+        $tipoAlertaModal = json_encode($tipoAlerta);
+        $idmodificarModal = json_encode($id_modificar);
+        $banJS = json_encode($ban);
 
         $router->render('editor/adm-categorias', [
             'categorias'=> $categorias,
             'alertas'=> $alertas,
-            'alertasModal'=> $alertasModal
+            'alertasModal'=> $alertasModal,
+            'tipoAlertaModal'=> $tipoAlertaModal,
+            'idmodificarModal' => $idmodificarModal,
+            'banJS' => $banJS
         ]);
     }
 
@@ -66,20 +82,26 @@ class CategoriaController {
 
         $categoria->sincronizar($_POST);
         $alertas = [];
+        $ban = false;
 
         $existe = $categoria->existeCategoria();
-
+        
         // Comparamos con el resultado obtenido de la BD
         if ($existe->num_rows) {
             // Esta registrado
-            $alertas = Usuario::getAlertas();
+            $alertas = Categoria::getAlertas();
+            
             
         } else {
             // No esta registrado
             $categoria->estado_categoria = 1;
             $categoria->guardar($categoria->id_categoria);
 
-            header('Location: /adm-categorias');
+            $ban = true;
+
+            return $ban;
+
+            // header('Location: /adm-categorias');
         }
 
         return ['alertas' => $alertas];
@@ -97,8 +119,6 @@ class CategoriaController {
         if($updCategoria->nombre_categoria === $_POST['nombre_categoria']) {
             
             $updCategoria->actualizar($id_categoria);
-            
-            header('Location: /adm-categorias');
 
         } else {
 
